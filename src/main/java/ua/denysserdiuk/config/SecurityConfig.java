@@ -31,11 +31,13 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.POST, "/CreateUser").permitAll()
-                        .requestMatchers("/api/register", "/", "/login", "/index.html", "/css/**", "/js/**", "/img/**").permitAll()
+                        .requestMatchers("/api/register", "/", "/login.html", "/index.html", "/css/**", "/js/**", "/img/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
-                        .loginPage("/login")
+                        .loginPage("/login.html")
+                        .failureUrl("/wrong-password.html")
+                        .defaultSuccessUrl("/home.html", true)
                         .permitAll()
                 )
                 .logout(LogoutConfigurer::permitAll);
