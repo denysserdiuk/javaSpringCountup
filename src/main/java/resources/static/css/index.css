@@ -1,0 +1,7 @@
+/* Global Styles */
+@import url(global.css);
+@import url(index.header.css);
+@import url(index.header-hero.css);
+@import url(index.main.css);
+@import url(index.footer.css);
+@import url(index.testimonials.css)

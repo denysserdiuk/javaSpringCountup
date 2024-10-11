@@ -1,0 +1,29 @@
+footer {
+    background-color: #ADD8E6; /* Light Blue */
+    color: #333333;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .footer__links {
+    margin-bottom: 10px;
+  }
+  
+  .footer__links a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #333333;
+  }
+  
+  .footer__links a:hover {
+    text-decoration: underline;
+  }
+  
+  .footer__social-media svg {
+    fill: #FFFFFF;
+    transition: fill 0.3s ease;
+  }
+  
+  .footer__social-media a:hover svg {
+    fill: #333333;
+  }
