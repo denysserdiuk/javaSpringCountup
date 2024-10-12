@@ -46,7 +46,7 @@ public class SecurityConfig {
 
     @Autowired
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder); // Use the injected passwordEncoder
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
     }
 }
 
