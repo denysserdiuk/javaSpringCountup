@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name= "users")
-public class User {
+public class Users {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,15 +14,15 @@ public class User {
     private String email;
     private String password;
 
-    public User() {
+    public Users() {
     }
 
-    public User(String username, String password) {
+    public Users(String username, String password) {
         this.username = username;
         this.password = password;
     }
 
-    public User(String username, String name, String email, String password) {
+    public Users(String username, String name, String email, String password) {
         this.username = username;
         this.name = name;
         this.email = email;
@@ -74,7 +74,7 @@ public class User {
 
     @java.lang.Override
     public java.lang.String toString() {
-        return "User{" +
+        return "Users{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", name='" + name + '\'' +

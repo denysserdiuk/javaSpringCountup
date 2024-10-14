@@ -1,9 +1,9 @@
 package ua.denysserdiuk.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ua.denysserdiuk.model.User;
+import ua.denysserdiuk.model.Users;
 
 
-public interface UserRepository extends JpaRepository<User, Long> {
-    User findByUsername(String username);
+public interface UserRepository extends JpaRepository<Users, Long> {
+    Users findByUsername(String username);
 }

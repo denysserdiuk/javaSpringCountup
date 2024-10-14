@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import ua.denysserdiuk.model.User;
+import ua.denysserdiuk.model.Users;
 import ua.denysserdiuk.service.UserCreationService;
 
 @RestController
@@ -20,8 +20,8 @@ public class UserController {
     }
 
     @PostMapping("/CreateUser")
-    public ResponseEntity<String> createUser(@RequestBody User user) {
-        String responseMessage = userService.createUser(user);
+    public ResponseEntity<String> createUser(@RequestBody Users users) {
+        String responseMessage = userService.createUser(users);
         return new ResponseEntity<>(responseMessage, HttpStatus.CREATED);
     }
 }
