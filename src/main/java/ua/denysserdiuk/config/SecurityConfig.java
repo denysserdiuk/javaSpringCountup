@@ -29,16 +29,15 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf
-                        .ignoringRequestMatchers("/CreateUser")
-                )
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.POST, "/CreateUser").permitAll()
-                        .requestMatchers("/api/register", "/","/register.html", "/login.html", "/index.html", "/css/**", "/js/**", "/img/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/CreateUser", "/login").permitAll()
+                        .requestMatchers("/api/register", "/","/register", "/login", "/index", "/css/**", "/js/**", "/img/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form ->form
-                        .defaultSuccessUrl("/home.html", true)
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/home", true)
+                        .permitAll()
                 )
                 .logout(LogoutConfigurer::permitAll);
         return http.build();

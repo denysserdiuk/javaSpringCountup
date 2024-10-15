@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Agency - Start Bootstrap Theme</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="/css/register.css" rel="stylesheet" />
+    </head>
+
+    <body>
+        <div class="register-page">
+            <div class="register-page__container">
+                <h2 class="register-page__heading">Create an Account!</h2>
+                <form
+                        th:action="@{/CreateUser}"
+                        method="post"
+                        class="register-page__form"
+                >
+                    <div class="register-page__input-group">
+                        <input
+                                type="text"
+                                name="name"
+                                placeholder="Full Name"
+                                class="register-page__input register-page__input--first-name"
+                        />
+                        <input
+                                type="text"
+                                name="username"
+                                placeholder="Username"
+                                required
+                                class="register-page__input register-page__input--username"
+                        />
+                    </div>
+                    <input
+                            type="email"
+                            name="email"
+                            placeholder="Email Address"
+                            required
+                            class="register-page__input register-page__input--email"
+                    />
+
+                    <div class="register-page__input-group">
+                        <input
+                                type="password"
+                                name="password"
+                                placeholder="Password"
+                                required
+                                class="register-page__input register-page__input--password"
+                        />
+                        <input
+                                type="password"
+                                name="repeatPassword"
+                                placeholder="Repeat Password"
+                                required
+                                class="register-page__input register-page__input--repeat-password"
+                        />
+                    </div>
+
+                    <input
+                            type="hidden"
+                            th:name="${_csrf.parameterName}"
+                            th:value="${_csrf.token}"
+                    />
+
+                    <button
+                            type="submit"
+                            class="register-page__button register-page__button--submit"
+                    >
+                        Register Account
+                    </button>
+
+                    <hr class="register-page__divider" />
+
+                    <button
+                            type="button"
+                            class="register-page__button register-page__button--google"
+                    >
+                        Register with Google
+                    </button>
+                    <button
+                            type="button"
+                            class="register-page__button register-page__button--facebook"
+                    >
+                        Register with Facebook
+                    </button>
+                </form>
+                <div class="register-page__footer">
+                    <a href="#" class="register-page__link">Forgot Password?</a>
+                    <a href="login.html" class="register-page__link">Already have an account? Login!</a>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>

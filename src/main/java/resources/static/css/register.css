@@ -46,11 +46,11 @@ body {
     margin-bottom: 15px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 14px;
     width: 48%;
 }
 
-.register-page__input--email, .register-page__input--password, .register-page__input--repeat-password {
+.register-page__input--email {
     width: 100%;
 }
 
