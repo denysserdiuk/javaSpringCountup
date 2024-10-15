@@ -1,0 +1,112 @@
+@import url(global.css);
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background: linear-gradient(to bottom right, var(--bs-body-color), var(--bs-gray-700));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.register-page {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    justify-content: center;
+}
+
+.register-page__container {
+    background: white;
+    border-radius: 10px;
+    padding: 50px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    width: 400px;
+}
+
+.register-page__heading {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.register-page__form {
+    display: flex;
+    flex-direction: column;
+}
+
+.register-page__input-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.register-page__input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 48%;
+}
+
+.register-page__input--email, .register-page__input--password, .register-page__input--repeat-password {
+    width: 100%;
+}
+
+.register-page__button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.register-page__button--submit {
+    background-color: var(--bs-gray-700);
+}
+
+.register-page__button--submit:hover {
+    background-color: var(--bs-body-color);
+}
+
+.register-page__button--google {
+    background-color: var(--bs-red);
+}
+
+.register-page__button--google:hover {
+    background-color: var(--bs-body-color);
+}
+
+.register-page__button--facebook {
+    background-color: var(--bs-gray-700);
+}
+
+.register-page__button--facebook:hover {
+    background-color: var(--bs-body-color);
+}
+
+.register-page__divider {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 15px 0;
+}
+
+.register-page__footer {
+    text-align: center;
+}
+
+.register-page__link {
+    color: var(--bs-gray-700);
+    display: block;
+    margin: 5px 0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.register-page__link:hover {
+    color: var(--bs-red);
+}

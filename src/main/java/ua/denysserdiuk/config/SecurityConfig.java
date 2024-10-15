@@ -34,7 +34,7 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.POST, "/CreateUser").permitAll()
-                        .requestMatchers("/api/register", "/", "/login.html", "/index.html", "/css/**", "/js/**", "/img/**").permitAll()
+                        .requestMatchers("/api/register", "/","/register.html", "/login.html", "/index.html", "/css/**", "/js/**", "/img/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form ->form
