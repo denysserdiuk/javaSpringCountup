@@ -1,4 +1,0 @@
-<svg width="50" height="50" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="50" cy="50" r="45" stroke="#FFFFFF" stroke-width="5" fill="#90EE90"/>
-    <text x="50%" y="55%" text-anchor="middle" fill="#FFFFFF" font-size="40" font-family="Arial" dy=".3em">$</text>
-</svg>
