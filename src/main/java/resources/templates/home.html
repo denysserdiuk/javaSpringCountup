@@ -1,83 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no"
-  />
-  <meta name="description" content="" />
-  <meta name="author" content="" />
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
 
-  <title>SB Admin 2 - Dashboard</title>
+    <title>SB Admin 2 - Dashboard</title>
 
-  <!-- Custom fonts for this template-->
-  <link
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-          rel="stylesheet"
-  />
-  <link
-          href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-          rel="stylesheet"
-  />
+    <!-- Custom fonts for this template-->
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+            rel="stylesheet"
+    />
+    <link
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet"
+    />
 
-  <!-- Custom styles for this template-->
-  <link href="/css/home.css" rel="stylesheet" />
+    <!-- Custom styles for this template-->
+    <link href="/css/home.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body id="page-top">
 <!-- Page Wrapper -->
 <div class="sidebar">
-  <!-- Logo (Header) -->
-  <div class="sidebar__header">
-    <img src="/img/logo.svg" alt="Logo" />
-    <span>SB ADMIN <sup>2</sup></span>
-  </div>
+    <!-- Logo (Header) -->
+    <div class="sidebar__header">
+        <img src="/img/logo.svg" alt="Logo"/>
+        <span>SB ADMIN <sup>2</sup></span>
+    </div>
 
-  <!-- Sidebar Menu -->
-  <div class="sidebar__menu">
-    <ul class="sidebar__menu-list">
-      <li class="sidebar__menu-item sidebar__menu-item--active">
-        <i class="fas fa-tachometer-alt sidebar__menu-item-icon"></i>
-        <span>Dashboard</span>
-      </li>
+    <!-- Sidebar Menu -->
+    <div class="sidebar__menu">
+        <ul class="sidebar__menu-list">
+            <li class="sidebar__menu-item sidebar__menu-item--active">
+                <i class="fas fa-tachometer-alt sidebar__menu-item-icon"></i>
+                <span>Dashboard</span>
+            </li>
 
-      <div class="sidebar__section-header">Interface</div>
-      <li class="sidebar__menu-item">
-        <i class="fas fa-cogs sidebar__menu-item-icon"></i>
-        <span>Components</span>
-      </li>
-      <li class="sidebar__menu-item">
-        <i class="fas fa-wrench sidebar__menu-item-icon"></i>
-        <span>Utilities</span>
-      </li>
+            <div class="sidebar__section-header">Interface</div>
+            <li class="sidebar__menu-item">
+                <i class="fas fa-cogs sidebar__menu-item-icon"></i>
+                <span>Components</span>
+            </li>
+            <li class="sidebar__menu-item">
+                <i class="fas fa-wrench sidebar__menu-item-icon"></i>
+                <span>Utilities</span>
+            </li>
 
-      <div class="sidebar__section-header">Addons</div>
-      <li class="sidebar__menu-item">
-        <i class="fas fa-chart-area sidebar__menu-item-icon"></i>
-        <span>Charts</span>
-      </li>
-      <li class="sidebar__menu-item">
-        <i class="fas fa-table sidebar__menu-item-icon"></i>
-        <span>Tables</span>
-      </li>
-    </ul>
-  </div>
+            <div class="sidebar__section-header">Addons</div>
+            <li class="sidebar__menu-item">
+                <i class="fas fa-chart-area sidebar__menu-item-icon"></i>
+                <span>Charts</span>
+            </li>
+            <li class="sidebar__menu-item">
+                <i class="fas fa-table sidebar__menu-item-icon"></i>
+                <span>Tables</span>
+            </li>
+        </ul>
+    </div>
 
-  <!-- Toggle Button -->
-  <div class="sidebar__toggle-container">
-    <button class="sidebar__toggle-button" id="sidebarToggle"><</button>
-  </div>
+    <!-- Toggle Button -->
+    <div class="sidebar__toggle-container">
+        <button class="sidebar__toggle-button" id="sidebarToggle"><</button>
+    </div>
 
-  <!-- Footer -->
-  <div class="sidebar__footer">
-    <span>&copy; Your Company</span>
-  </div>
+    <!-- Sidebar Footer -->
+    <div class="sidebar__footer">
+        <span>&copy; Your Company</span>
+    </div>
 </div>
 
-<div class="main-content">
-  <!-- Your main content goes here -->
+<div class="main">
+    <!-- Dashboard Header -->
+    <header class="dashboard-header">
+        <h1 class="dashboard-header__title">Dashboard</h1>
+        <button class="dashboard-header__button">Generate Report</button>
+    </header>
+
+    <!-- Dashboard Cards -->
+    <div class="dashboard-cards">
+        <div class="card">
+            <h3 class="card__title">Earnings (Monthly)</h3>
+            <p class="card__value">$40,000</p>
+        </div>
+        <div class="card">
+            <h3 class="card__title">Earnings (Annual)</h3>
+            <p class="card__value">$215,000</p>
+        </div>
+        <div class="card">
+            <h3 class="card__title">Tasks</h3>
+            <p class="card__value">50%</p>
+        </div>
+        <div class="card">
+            <h3 class="card__title">Pending Requests</h3>
+            <p class="card__value">18</p>
+        </div>
+    </div>
+    <!-- Expances and profits section -->
+    <div class="windows-section">
+        <div class="window-container">
+            <h3 class="window-container__title">Profits</h3>
+            <!-- Content related to profits will go here -->
+            <button class="window-container__button">Add Profit</button>
+        </div>
+        <div class="window-container">
+            <h3 class="window-container__title">Expenses</h3>
+            <!-- Content related to expenses will go here -->
+            <button class="window-container__button">Add Expense</button>
+        </div>
+    </div>
+    <!-- Charts Section -->
+    <div class="charts-section">
+        <div class="chart-container">
+            <h3 class="chart-container__title">Earnings Overview</h3>
+            <canvas id="earningsChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <h3 class="chart-container__title">Revenue Sources</h3>
+            <canvas id="revenueChart"></canvas>
+        </div>
+    </div>
 </div>
 <script src="/js/home.js"></script>
 </body>

@@ -130,7 +130,7 @@
 }
 
 .sidebar__toggle-button:hover {
-    background-color: #d1d3e2;
+    background-color:var(--filler-color);
 }
 
 /* Responsive Sidebar */
@@ -149,11 +149,18 @@
     }
 
     .sidebar__header span,
+    .sidebar__section-header,
+    .sidebar__toggle-container,
     .sidebar__menu-item span {
         display: none;
     }
 
     .main-content {
         margin-left: 60px;
+    }
+    .sidebar__footer {
+        padding-bottom: 10px;
+        text-align: left;
+        margin: 0;
     }
 }
