@@ -21,12 +21,21 @@
 .sidebar__header {
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 20px;
+    justify-content: left;
+    padding: 10px;
     font-size: 1.2rem;
     font-weight: 700;
-    letter-spacing: 0.05rem;
     transition: all 0.3s ease;
+}
+.sidebar__header h3{
+    letter-spacing: 0.05rem;
+    max-width: 100%;
+    line-height: 1.2;
+    text-overflow: ellipsis;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    margin-left: 5px;
 }
 
 .sidebar__header img {
@@ -35,7 +44,7 @@
 }
 
 /* Hide text when collapsed */
-.sidebar--collapsed .sidebar__header span,
+.sidebar--collapsed .sidebar__header h3,
 .sidebar--collapsed .sidebar__menu-item span {
     display: none;
 }
@@ -148,7 +157,7 @@
         margin-right: 0;
     }
 
-    .sidebar__header span,
+    .sidebar__header h3,
     .sidebar__section-header,
     .sidebar__toggle-container,
     .sidebar__menu-item span {

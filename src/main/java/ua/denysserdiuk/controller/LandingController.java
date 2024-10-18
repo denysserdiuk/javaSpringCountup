@@ -1,7 +1,11 @@
 package ua.denysserdiuk.controller;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import ua.denysserdiuk.utils.SecurityUtils;
 
 @Controller
 public class LandingController {
@@ -22,7 +26,9 @@ public class LandingController {
     }
 
     @GetMapping("/home")
-    public String home(){
+    public String home(Model model){
+        String username = SecurityUtils.getAuthenticatedUsername();
+        model.addAttribute("username", username);
         return "home";
     }
 }

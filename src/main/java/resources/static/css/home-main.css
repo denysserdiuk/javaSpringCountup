@@ -88,7 +88,7 @@
     color: var(--text-color);
 }
 
-.window-container__button {
+.btn {
     align-self: flex-end; /* Align button at the bottom */
     background-color: var(--filler-color);
     border: none;
@@ -100,8 +100,45 @@
     transition: background-color 0.3s ease;
 }
 
-.window-container__button:hover {
+.btn:hover {
     background-color: var(--bs-gray-700);
+}
+
+/* Modal Form Styles */
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.modal-form__group {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-form__label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.modal-form__input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    transition: background-color 0.2s ease;
+}
+
+.modal-form__input:focus {
+    background-color: #fff;
+    border-color: #007bff;
+    outline: none;
+}
+
+.btn-save-changes-modal:hover, .btn-close-modal:hover {
+    opacity: 0.9;
 }
 
 /* Charts Section */
