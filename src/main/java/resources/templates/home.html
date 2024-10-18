@@ -118,13 +118,13 @@
         </div>
 
         <div class="window-container --expanses">
-            <h3 class="window-container__title">Expenses</h3>
+            <h3 class="window-container__title">Losses</h3>
             <div class="scrollable-list">
-                <ul id="expenses-list">
+                <ul id="losses-list">
                     <!-- List items will be appended here -->
                 </ul>
             </div>
-            <button class="btn window-container__button" data-bs-toggle="modal" data-bs-target="#add-expanse">Add Expense</button>
+            <button class="btn window-container__button" data-bs-toggle="modal" data-bs-target="#add-expanse">Add Loss</button>
         </div>
     </div>
     <!-- Charts Section -->
@@ -186,28 +186,28 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <!-- Expense Form -->
-                <form th:action="@{/AddBudgetItem}" method="post" class="modal-form" id="#add-expanse">
+                <!-- Loss Form -->
+                <form th:action="@{/AddBudgetItem}" method="post" class="modal-form" id="#add-loss">
                     <div class="modal-form__group">
-                        <label for="description-expanse" class="modal-form__label">Description</label>
-                        <input type="text" name="description" id="description-expanse" class="modal-form__input"
+                        <label for="description-loss" class="modal-form__label">Description</label>
+                        <input type="text" name="description" id="description-loss" class="modal-form__input"
                                required>
                     </div>
                     <div class="modal-form__group">
-                        <label for="amount-expanse" class="modal-form__label">Amount</label>
-                        <input type="number" name="amount" id="amount-expanse" class="modal-form__input" required>
+                        <label for="amount-loss" class="modal-form__label">Amount</label>
+                        <input type="number" name="amount" id="amount-loss" class="modal-form__input" required>
                     </div>
                     <div class="modal-form__group">
-                        <label for="expanse-date" class="modal-form__label">Date</label>
-                        <input type="date" name="date" id="expanse-date" class="modal-form__input">
+                        <label for="loss-date" class="modal-form__label">Date</label>
+                        <input type="date" name="date" id="loss-date" class="modal-form__input">
                     </div>
                     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-                    <input type="hidden" name="type" value="expanse">
+                    <input type="hidden" name="type" value="loss">
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-close-modal" data-bs-dismiss="modal">Close</button>
-                <button type="submit" form="#add-expanse" class="btn btn-save-changes-modal">Save changes</button>
+                <button type="submit" form="#add-loss" class="btn btn-save-changes-modal">Save changes</button>
             </div>
         </div>
     </div>
