@@ -67,7 +67,6 @@
     gap: 20px;
 }
 
-/* Window Container (same size as chart containers) */
 .window-container {
     background-color: var(--white-color);
     padding: 20px;
@@ -75,21 +74,36 @@
     box-shadow: 0 0.15rem 1.75rem rgba(58, 59, 69, 0.15);
     position: relative;
     height: 450px;
-    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     margin-bottom: 10px;
 }
 
-.window-container__title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--text-color);
+.scrollable-list {
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-bottom: 10px; /* To avoid overlapping the button */
+}
+
+#profits-list, #expenses-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#profits-list li, #expenses-list li {
+    background-color: #f8f9fc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: #5a5c69;
+    display: flex;
+    justify-content: space-between;
 }
 
 .btn {
-    align-self: flex-end; /* Align button at the bottom */
     background-color: var(--filler-color);
     border: none;
     padding: 10px 20px;
@@ -103,6 +117,7 @@
 .btn:hover {
     background-color: var(--bs-gray-700);
 }
+
 
 /* Modal Form Styles */
 .modal-form {
@@ -173,8 +188,8 @@ canvas {
 /* Media query for mobile screens (max-width: 768px) */
 @media (max-width: 768px) {
     .main {
-        margin-left: 50px; /* Remove left margin for mobile */
-        padding: 10px; /* Reduce padding */
+        margin-left: 60px;
+        padding: 10px;
     }
 
     .dashboard-header {

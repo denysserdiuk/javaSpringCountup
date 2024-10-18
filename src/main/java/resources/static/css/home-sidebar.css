@@ -20,8 +20,8 @@
 /* Sidebar Header with Logo */
 .sidebar__header {
     display: flex;
-    align-items: center;
-    justify-content: left;
+    text-align: center;
+    justify-content: center;
     padding: 10px;
     font-size: 1.2rem;
     font-weight: 700;
@@ -36,6 +36,7 @@
     overflow-wrap: break-word;
     word-wrap: break-word;
     margin-left: 5px;
+    margin-top: 10px;
 }
 
 .sidebar__header img {

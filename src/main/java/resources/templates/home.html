@@ -33,7 +33,6 @@
 <div class="sidebar">
     <!-- Logo (Header) -->
     <div class="sidebar__header">
-        <img src="/img/logo.svg" alt="Logo"/>
         <h3>Hi, <span th:text="${username}"></span></h3>
     </div>
 
@@ -106,20 +105,26 @@
     </div>
     <!-- Expances and profits section -->
     <div class="windows-section">
-        <div class="window-container">
+        <div class="window-container --profits">
             <h3 class="window-container__title">Profits</h3>
-            <!-- Content related to profits will go here -->
-            <button type="button" class="btn window-container__button" data-bs-toggle="modal"
-                    data-bs-target="#add-profit">
+            <div class="scrollable-list">
+                <ul id="profits-list">
+                    <!-- List items will be appended here -->
+                </ul>
+            </div>
+            <button type="button" class="btn window-container__button" data-bs-toggle="modal" data-bs-target="#add-profit">
                 Add Profit
             </button>
         </div>
-        <div class="window-container">
+
+        <div class="window-container --expanses">
             <h3 class="window-container__title">Expenses</h3>
-            <!-- Content related to expenses will go here -->
-            <button class="btn window-container__button" data-bs-toggle="modal" data-bs-target="#add-expanse">Add
-                Expense
-            </button>
+            <div class="scrollable-list">
+                <ul id="expenses-list">
+                    <!-- List items will be appended here -->
+                </ul>
+            </div>
+            <button class="btn window-container__button" data-bs-toggle="modal" data-bs-target="#add-expanse">Add Expense</button>
         </div>
     </div>
     <!-- Charts Section -->
@@ -134,6 +139,8 @@
         </div>
     </div>
 </div>
+
+
 <!--MODAL WINDOWS-->
 <!--adding profit-->
 <div class="modal fade" id="add-profit" tabindex="-1" aria-labelledby="add-profit__modal" aria-hidden="true">
@@ -206,6 +213,7 @@
     </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>

@@ -80,3 +80,32 @@ const revenueChart = new Chart(revenueCtx, {
         cutout: '75%', // Make it look like a "donut"
     }
 });
+
+$(document).ready(function() {
+    // Load current month budget lines
+    $.ajax({
+        url: '/currentMonthBudgets',
+        type: 'GET',
+        success: function(data) {
+            var profitsList = $('#profits-list');
+            var expensesList = $('#expenses-list');
+
+            // Clear existing list items
+            profitsList.empty();
+            expensesList.empty();
+
+            // Loop through the data and append items to the appropriate list
+            data.forEach(function(budget) {
+                if (budget.type === 'profit') {
+                    profitsList.append('<li>' + budget.description + ' - $' + budget.amount + '</li>');
+                } else if (budget.type === 'expanse') {
+                    expensesList.append('<li>' + budget.description + ' - $' + budget.amount + '</li>');
+                }
+            });
+        },
+        error: function(error) {
+            console.log("Error fetching budget lines:", error);
+        }
+    });
+});
+
