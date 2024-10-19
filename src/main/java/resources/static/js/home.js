@@ -20,10 +20,10 @@ $(document).ready(function () {
                     datasets: [{
                         label: 'Balance',
                         data: Object.values(data), // Balance values
-                        borderColor: 'rgba(78, 115, 223, 1)', // SB Admin 2's primary color
+                        borderColor: '#495057', // SB Admin 2's primary color
                         backgroundColor: 'rgba(78, 115, 223, 0.05)', // Light fill for the line
                         borderWidth: 3,
-                        pointBackgroundColor: 'rgba(78, 115, 223, 1)', // Color for the points
+                        pointBackgroundColor: '#ffc800', // Color for the points
                         tension: 0.4, // Smooth the line a little bit
                         fill: true
                     }]
@@ -72,8 +72,8 @@ const revenueChart = new Chart(revenueCtx, {
         labels: ['Direct', 'Social', 'Referral'],
         datasets: [{
             data: [50, 30, 20],
-            backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'], // Use SB Admin 2's colors
-            hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+            backgroundColor: ['#495057', '#ffc800', '#212529'],
+            hoverBackgroundColor: ['#212529', '#ffc800', '#dc3545'],
             hoverBorderColor: 'rgba(234, 236, 244, 1)',
         }]
     },
@@ -89,7 +89,23 @@ const revenueChart = new Chart(revenueCtx, {
                 }
             },
         },
-        cutout: '75%', // Make it look like a "donut"
+        cutout: '75%',
+    }
+});
+
+// Save scroll position before form submission
+document.querySelectorAll('form').forEach(form => {
+    form.addEventListener('submit', function () {
+        localStorage.setItem('scrollPosition', window.scrollY);
+    });
+});
+
+// Restore scroll position after page load
+window.addEventListener('load', function () {
+    const scrollPosition = localStorage.getItem('scrollPosition');
+    if (scrollPosition) {
+        window.scrollTo(0, parseInt(scrollPosition)); // Scroll to the saved position
+        localStorage.removeItem('scrollPosition'); // Remove it after use
     }
 });
 

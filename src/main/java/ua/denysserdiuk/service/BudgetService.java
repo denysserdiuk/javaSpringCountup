@@ -63,4 +63,16 @@ public class BudgetService implements AddBudgetLinesService {
 
         return monthlyBalance;
     }
+
+    public Double getAnnualBalance(long userId, int year){
+        Double totalProfit = budgetRepository.findTotalByUserAndTypeAndYear(userId, "profit", year);
+        Double totalExpense = budgetRepository.findTotalByUserAndTypeAndYear(userId, "loss", year);
+        return (totalProfit == null ? 0 : totalProfit) - (totalExpense == null ? 0 : totalExpense);
+    }
+
+    public Double getMonthlyBalance(long userId, int month, int year) {
+        Double totalProfit = budgetRepository.findTotalByUserAndTypeAndMonth(userId, "profit", month, year);
+        Double totalExpense = budgetRepository.findTotalByUserAndTypeAndMonth(userId, "loss", month, year);
+        return (totalProfit == null ? 0 : totalProfit) - (totalExpense == null ? 0 : totalExpense);
+    }
 }

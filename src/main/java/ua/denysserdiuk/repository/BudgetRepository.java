@@ -21,4 +21,11 @@ public interface BudgetRepository extends JpaRepository<Budget, Long> {
             @Param("month") int month,
             @Param("year") int year
     );
+
+    @Query("SELECT SUM(b.amount) FROM Budget b WHERE b.user.id = :userId AND b.type = :type AND YEAR(b.date) = :year")
+    Double findTotalByUserAndTypeAndYear(
+            @Param("userId") Long userId,
+            @Param("type") String type,
+            @Param("year") int year
+    );
 }
