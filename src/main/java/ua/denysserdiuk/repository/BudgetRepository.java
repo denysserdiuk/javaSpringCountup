@@ -28,4 +28,8 @@ public interface BudgetRepository extends JpaRepository<Budget, Long> {
             @Param("type") String type,
             @Param("year") int year
     );
+
+    @Query("SELECT DISTINCT b.category FROM Budget b WHERE b.user.id = :userId")
+    List<String> findCategoriesByUser(@Param("userId") Long userId);
+
 }

@@ -29,6 +29,7 @@ public class BudgetService implements AddBudgetLinesService {
         budget1.setAmount(budget.getAmount());
         budget1.setType(budget.getType());
         budget1.setDate(budget.getDate());
+        budget1.setCategory(budget.getCategory());
         budgetRepository.save(budget1);
         return "Budget line added";
     }
@@ -74,5 +75,10 @@ public class BudgetService implements AddBudgetLinesService {
         Double totalProfit = budgetRepository.findTotalByUserAndTypeAndMonth(userId, "profit", month, year);
         Double totalExpense = budgetRepository.findTotalByUserAndTypeAndMonth(userId, "loss", month, year);
         return (totalProfit == null ? 0 : totalProfit) - (totalExpense == null ? 0 : totalExpense);
+    }
+
+    @Override
+    public List<String> getUserCategories(long userId) {
+        return budgetRepository.findCategoriesByUser(userId);
     }
 }

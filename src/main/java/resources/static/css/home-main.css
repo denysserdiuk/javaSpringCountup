@@ -94,7 +94,7 @@
 }
 
 #profits-list li, #losses-list li {
-    background-color: #f8f9fc;
+    background-color: var(--li-background-color);
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 8px;

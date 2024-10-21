@@ -19,15 +19,18 @@ public class Budget {
     private float amount;
     private String type;
     private LocalDate date;
+    private String category;
 
-    public Budget(){
+    public Budget() {
     }
-    public Budget(Users user, String description, float amount, String type, LocalDate date){
+
+    public Budget(Users user, String description, float amount, String type, LocalDate date, String category) {
         this.user = user;
         this.description = description;
         this.amount = amount;
         this.type = type;
         this.date = date;
+        this.category = category;
     }
 
     public long getId() {
@@ -76,6 +79,14 @@ public class Budget {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     @Override

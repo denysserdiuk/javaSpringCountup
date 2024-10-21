@@ -1,0 +1,46 @@
+<div class="sidebar" id="sidebar">
+    <!-- Logo (Header) -->
+    <div class="sidebar__header">
+        <h3>Hi, <span th:text="${username}"></span></h3>
+    </div>
+
+    <!-- Sidebar Menu -->
+    <div class="sidebar__menu">
+        <ul class="sidebar__menu-list">
+            <li class="sidebar__menu-item sidebar__menu-item--active">
+                <i class="fas fa-tachometer-alt sidebar__menu-item-icon"></i>
+                <span>Dashboard</span>
+            </li>
+
+            <div class="sidebar__section-header">Interface</div>
+            <li class="sidebar__menu-item">
+                <i class="fas fa-cogs sidebar__menu-item-icon"></i>
+                <span>Components</span>
+            </li>
+            <li class="sidebar__menu-item">
+                <i class="fas fa-wrench sidebar__menu-item-icon"></i>
+                <span>Utilities</span>
+            </li>
+
+            <div class="sidebar__section-header">Addons</div>
+            <li class="sidebar__menu-item">
+                <i class="fas fa-chart-area sidebar__menu-item-icon"></i>
+                <span>Charts</span>
+            </li>
+            <li class="sidebar__menu-item">
+                <i class="fas fa-table sidebar__menu-item-icon"></i>
+                <span>Tables</span>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Toggle Button -->
+    <div class="sidebar__toggle-container">
+        <button class="sidebar__toggle-button" id="sidebarToggle"><</button>
+    </div>
+
+    <!-- Sidebar Footer -->
+    <div class="sidebar__footer">
+        <span>&copy; Your Company</span>
+    </div>
+</div>
