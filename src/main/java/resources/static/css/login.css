@@ -79,7 +79,7 @@ body {
 }
 
 .login-page__button--google {
-  background-color: var(--bs-red);
+  background-color: var(--bs-google-background);
 }
 
 .login-page__button--google:hover {

@@ -51,4 +51,5 @@ public class BudgetWebController {
         Users user = userRepository.findByUsername(username);
         return addBudgetLinesService.getCurrentMonthBudgetLines(user);
     }
+
 }

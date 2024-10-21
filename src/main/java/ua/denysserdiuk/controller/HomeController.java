@@ -22,7 +22,15 @@ public class HomeController {
     }
 
     @GetMapping("/home-sidebar")
-    public String homeSidebar(){return "home-sidebar";}
+
+    public String homeSidebar(Model model) {
+        String username = SecurityUtils.getAuthenticatedUsername();
+
+        Users user = userRepository.findByUsername(username);
+        model.addAttribute("username", user.getUsername());
+
+        return "home-sidebar";
+    }
 
     @GetMapping("/home")
     public String home(Model model) {

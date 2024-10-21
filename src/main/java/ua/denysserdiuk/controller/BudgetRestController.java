@@ -3,6 +3,7 @@ package ua.denysserdiuk.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import ua.denysserdiuk.model.Users;
 import ua.denysserdiuk.repository.UserRepository;
@@ -28,5 +29,13 @@ public class BudgetRestController {
         String username = SecurityUtils.getAuthenticatedUsername();
         Users user = userRepository.findByUsername(username);
         return budgetService.getMonthlyBalance(user.getId());
+    }
+
+    @GetMapping("/CurrentMonthLossesByCategory")
+    @ResponseBody
+    public Map<String, Double> getCurrentMonthLossesByCategory() {
+        String username = SecurityUtils.getAuthenticatedUsername();
+        Users user = userRepository.findByUsername(username);
+        return budgetService.getCurrentMonthLossCategoryPercentages(user);
     }
 }

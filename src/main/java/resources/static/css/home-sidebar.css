@@ -10,7 +10,10 @@
     color: white;
     transition: width 0.3s ease;
 }
-
+.sidebar__url{
+    color : var(--bs-light);
+    text-decoration: none;
+}
 /* Sidebar Collapsed */
 .sidebar--collapsed {
     width: 60px;
@@ -66,7 +69,7 @@
 }
 
 .sidebar__menu-item:hover {
-    background-color: #2e59d9;
+    background-color: var(--filler-color);
     cursor: pointer;
     border-radius: 4px;
 }

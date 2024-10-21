@@ -13,4 +13,5 @@ public interface AddBudgetLinesService {
     Double getAnnualBalance(long userId, int year);
     Double getMonthlyBalance(long userId, int month, int year);
     List<String>getUserCategories(long userID);
+    Map<String, Double> getCurrentMonthLossCategoryPercentages(Users user);
 }

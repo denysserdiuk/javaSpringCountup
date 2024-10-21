@@ -3,13 +3,14 @@
     <div class="sidebar__header">
         <h3>Hi, <span th:text="${username}"></span></h3>
     </div>
-
     <!-- Sidebar Menu -->
     <div class="sidebar__menu">
         <ul class="sidebar__menu-list">
             <li class="sidebar__menu-item sidebar__menu-item--active">
-                <i class="fas fa-tachometer-alt sidebar__menu-item-icon"></i>
-                <span>Dashboard</span>
+                <a class="sidebar__url" href="/home">
+                    <i class="fas fa-house sidebar__menu-item-icon"></i>
+                    <span>Dashboard</span>
+                </a>
             </li>
 
             <div class="sidebar__section-header">Interface</div>
@@ -24,12 +25,22 @@
 
             <div class="sidebar__section-header">Addons</div>
             <li class="sidebar__menu-item">
-                <i class="fas fa-chart-area sidebar__menu-item-icon"></i>
-                <span>Charts</span>
+                <a class="sidebar__url" href="/charts">
+                    <i class="fas fa-chart-area sidebar__menu-item-icon"></i>
+                    <span>Charts</span>
+                </a>
             </li>
             <li class="sidebar__menu-item">
-                <i class="fas fa-table sidebar__menu-item-icon"></i>
-                <span>Tables</span>
+                <a class="sidebar__url" href="/data">
+                    <i class="fas fa-folder sidebar__menu-item-icon"></i>
+                    <span>Data</span>
+                </a>
+            </li>
+            <li class="sidebar__menu-item">
+                <a class="sidebar__url" href="/shares">
+                    <i class="fas fa-landmark sidebar__menu-item-icon"></i>
+                    <span>Shares</span>
+                </a>
             </li>
         </ul>
     </div>

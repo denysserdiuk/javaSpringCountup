@@ -1,14 +1,16 @@
 :root {
-    /* primary colors */
+    /* primary colors
+     green replaced the #ffc800*/
     --bs-gray-secondary: #495057;
-    --filler-color: #ffc800;
+    --filler-color: #5eb535;
 
     /* LANDING page colors and Styles:  */
-    --bs-primary: #ffc800;
+    --bs-primary: #2d651b;
     --bs-danger: #dc3545;
+    --bs-google-background: #c6464d;
     --bs-light: #f8f9fa;
     --bs-dark: #212529;
-    --bs-primary-rgb: 255, 200, 0;
+    --bs-primary-rgb: 94, 181, 53;
     --bs-secondary-rgb: 108, 117, 125;
 
     --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto,
