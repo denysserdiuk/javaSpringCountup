@@ -3,7 +3,8 @@
 
 
 body {
-  background: linear-gradient(to bottom right, var(--bs-body-color), var(--bs-gray-secondary));
+  background: linear-gradient(to bottom right, var(--primary-dark), var(--primary-darker-green),
+  var(--primary-light-green), var(--primary-cream));
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,6 +31,7 @@ body {
   text-align: center;
   margin-bottom: 20px;
   font-weight: 700;
+  color: var(--primary-darker-green);
 }
 
 .login-page__form {
@@ -70,12 +72,12 @@ body {
   transition: background-color 0.3s ease;
 }
 
-.login-page__button--submit {
-  background-color: var(--bs-gray-secondary);
+.login-page__button {
+  background-color: var(--primary-light-green);
 }
 
-.login-page__button--submit:hover {
-  background-color: var(--bs-body-color);
+.login-page__button:hover {
+  background-color: var(--primary-darker-green);
 }
 
 .login-page__button--google {
@@ -83,15 +85,7 @@ body {
 }
 
 .login-page__button--google:hover {
-  background-color: var(--bs-body-color);
-}
-
-.login-page__button--facebook {
-  background-color: var(--bs-gray-secondary);
-}
-
-.login-page__button--facebook:hover {
-  background-color: var(--bs-body-color);
+  background-color: var(--primary-darker-green);
 }
 
 .login-page__divider {

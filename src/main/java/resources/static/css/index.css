@@ -482,7 +482,7 @@ textarea.form-control {
 #mainNav.navbar-shrink {
   padding-top: 1rem;
   padding-bottom: 1rem;
-  background-color: #212529;
+  background-color: var(--primary-dark);
 }
 #mainNav.navbar-shrink .navbar-brand {
   font-size: 1.25em;
@@ -1148,7 +1148,7 @@ p {
 #mainNav {
   padding-top: 1rem;
   padding-bottom: 1rem;
-  background-color: #212529;
+  background-color: var(--primary-dark);
 }
 #mainNav .navbar-toggler {
   padding: 0.75rem;
@@ -1205,7 +1205,8 @@ header.masthead {
   padding-bottom: 6rem;
   text-align: center;
   color: #fff;
-  background: linear-gradient(to bottom right, var(--bs-body-color), var(--bs-gray-secondary));
+  background: linear-gradient(to bottom right, var(--primary-dark), var(--primary-darker-green),
+  var(--primary-light-green), var(--primary-cream));
   /* background-image: url("../assets/img/header-bg.jpg");
   background-repeat: no-repeat;
   background-attachment: scroll;
@@ -1416,7 +1417,7 @@ header.masthead .masthead-heading {
 }
 
 section#contact {
-  background-color: #212529;
+  background-color: var(--primary-dark);
   background-image: url("../img/map-image.png");
   background-repeat: no-repeat;
   background-position: center;

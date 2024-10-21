@@ -1,0 +1,10 @@
+@import url(global.css);
+@import url(home-main.css);
+
+.shares-add-asset__button{
+    max-width: 25%;
+}
+
+.shares-container__primary{
+    height: 100%;
+}

@@ -22,7 +22,6 @@ public class HomeController {
     }
 
     @GetMapping("/home-sidebar")
-
     public String homeSidebar(Model model) {
         String username = SecurityUtils.getAuthenticatedUsername();
 
@@ -52,5 +51,9 @@ public class HomeController {
         model.addAttribute("monthlyBalance", monthlyBalance);
 
         return "home";
+    }
+    @GetMapping("/shares")
+    public String shares(){
+        return "shares";
     }
 }

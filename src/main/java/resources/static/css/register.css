@@ -1,7 +1,8 @@
 @import url(global.css);
 
 body {
-    background: linear-gradient(to bottom right, var(--bs-body-color), var(--bs-gray-secondary));
+    background: linear-gradient(to bottom right, var(--primary-dark), var(--primary-darker-green),
+    var(--primary-light-green), var(--primary-cream));
     display: flex;
     justify-content: center;
     align-items: center;
@@ -64,27 +65,19 @@ body {
     transition: background-color 0.3s ease;
 }
 
-.register-page__button--submit {
-    background-color: var(--bs-gray-secondary);
+.register-page__button {
+    background-color: var(--primary-light-green);
 }
 
-.register-page__button--submit:hover {
-    background-color: var(--bs-body-color);
+.register-page__button:hover {
+    background-color: var(--primary-darker-green);
 }
 
 .register-page__button--google {
-    background-color: var(--bs-red);
+    background-color: var(--bs-google-background);
 }
 
 .register-page__button--google:hover {
-    background-color: var(--bs-body-color);
-}
-
-.register-page__button--facebook {
-    background-color: var(--bs-gray-secondary);
-}
-
-.register-page__button--facebook:hover {
     background-color: var(--bs-body-color);
 }
 

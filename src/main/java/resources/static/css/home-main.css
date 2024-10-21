@@ -2,6 +2,7 @@
 @import url(global.css);
 
 /* Global Styles */
+
 /* Main Content */
 .main {
     max-width: 1200px;
@@ -17,7 +18,7 @@
     margin-bottom: 20px;
 }
 
-.dashboard-header__title {
+.dashboard-header__title .dashboard-header__current-month{
     font-size: 2rem;
     color: var(--text-color);
 }
@@ -116,7 +117,7 @@
 }
 
 .btn:hover {
-    background-color: var(--bs-gray-secondary);
+    background-color: var(--primary-light-green);
 }
 
 
@@ -198,9 +199,10 @@ canvas {
         align-items: flex-start; /* Align to the left */
     }
 
-    .dashboard-header__title {
+    .dashboard-header__title, .dashboard-header__current-month {
         font-size: 1.5rem; /* Smaller font for mobile */
-        margin-bottom: 10px; /* Add space between title and button */
+        margin-bottom: 10px;
+        color: #1A3636;
     }
 
     .dashboard-header__button {
