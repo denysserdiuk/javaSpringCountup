@@ -6,7 +6,7 @@ import ua.denysserdiuk.model.Users;
 import java.util.List;
 import java.util.Map;
 
-public interface AddBudgetLinesService {
+public interface BudgetLinesService {
     String addBudgetLine(Budget budget);
     List<Budget> getCurrentMonthBudgetLines(Users user);
     Map<String, Double> getMonthlyBalance(long id);

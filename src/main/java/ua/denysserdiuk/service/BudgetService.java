@@ -12,7 +12,7 @@ import java.time.format.TextStyle;
 import java.util.*;
 
 @Service
-public class BudgetService implements AddBudgetLinesService {
+public class BudgetService implements BudgetLinesService {
     private final BudgetRepository budgetRepository;
 
     @Autowired
@@ -20,6 +20,7 @@ public class BudgetService implements AddBudgetLinesService {
         this.budgetRepository = budgetRepository;
     }
 
+    //Add New Budget line to DB
     @Override
     public String addBudgetLine(Budget budget) {
 
@@ -34,11 +35,15 @@ public class BudgetService implements AddBudgetLinesService {
         return "Budget line added";
     }
 
-    public List<Budget> getCurrentMonthBudgetLines(Users user){
+    //Get budget items that have current month date per user
+
+    public List<Budget> getCurrentMonthBudgetLines(Users user) {
         return budgetRepository.findCurrentMonthProfitsByUser(user.getId());
     }
 
-    public Map<String, Double> getMonthlyBalance(long userId){
+    //Get Yearly Running balance per user (profits - losses per each user per month)
+
+    public Map<String, Double> getMonthlyBalance(long userId) {
         Map<String, Double> monthlyBalance = new LinkedHashMap<>();
         double runningBalance = 0;
 
@@ -60,6 +65,8 @@ public class BudgetService implements AddBudgetLinesService {
 
         return monthlyBalance;
     }
+
+    //Shows all the losses by categories in percentage per current month (for Donut chart).
 
     public Map<String, Double> getCurrentMonthLossCategoryPercentages(Users user) {
         List<Budget> currentMonthBudgets = budgetRepository.findCurrentMonthProfitsByUser(user.getId());
@@ -91,7 +98,7 @@ public class BudgetService implements AddBudgetLinesService {
     }
 
 
-    public Double getAnnualBalance(long userId, int year){
+    public Double getAnnualBalance(long userId, int year) {
         Double totalProfit = budgetRepository.findTotalByUserAndTypeAndYear(userId, "profit", year);
         Double totalExpense = budgetRepository.findTotalByUserAndTypeAndYear(userId, "loss", year);
         return (totalProfit == null ? 0 : totalProfit) - (totalExpense == null ? 0 : totalExpense);

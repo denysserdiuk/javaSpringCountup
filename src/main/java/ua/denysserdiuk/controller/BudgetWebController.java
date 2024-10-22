@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ua.denysserdiuk.model.Budget;
 import ua.denysserdiuk.model.Users;
 import ua.denysserdiuk.repository.UserRepository;
-import ua.denysserdiuk.service.AddBudgetLinesService;
+import ua.denysserdiuk.service.BudgetLinesService;
 import ua.denysserdiuk.utils.SecurityUtils;
 
 import java.time.LocalDate;
@@ -17,12 +17,12 @@ import java.util.List;
 
 @Controller
 public class BudgetWebController {
-    private final AddBudgetLinesService addBudgetLinesService;
+    private final BudgetLinesService budgetLinesService;
     private final UserRepository userRepository;
 
 
-    public BudgetWebController(AddBudgetLinesService addBudgetLinesService, UserRepository userRepository) {
-        this.addBudgetLinesService = addBudgetLinesService;
+    public BudgetWebController(BudgetLinesService budgetLinesService, UserRepository userRepository) {
+        this.budgetLinesService = budgetLinesService;
         this.userRepository = userRepository;
     }
 
@@ -37,7 +37,7 @@ public class BudgetWebController {
             budget.setDate(LocalDate.now());
         }
 
-        addBudgetLinesService.addBudgetLine(budget);
+        budgetLinesService.addBudgetLine(budget);
 
         model.addAttribute("message", "Budget Line added!");
 
@@ -49,7 +49,7 @@ public class BudgetWebController {
     public List<Budget> getCurrentMonthBudgets() {
         String username = SecurityUtils.getAuthenticatedUsername();
         Users user = userRepository.findByUsername(username);
-        return addBudgetLinesService.getCurrentMonthBudgetLines(user);
+        return budgetLinesService.getCurrentMonthBudgetLines(user);
     }
 
 
