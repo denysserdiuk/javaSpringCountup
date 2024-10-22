@@ -1,8 +1,6 @@
 package ua.denysserdiuk.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import ua.denysserdiuk.repository.SharesRepository;
@@ -10,27 +8,31 @@ import ua.denysserdiuk.service.StockPriceService;
 
 import java.util.List;
 
+
 @Component
 public class StockUpdaterScheduler {
 
-    @Autowired
-    private SharesRepository sharesRepository;
+    private final SharesRepository sharesRepository;
+    private final StockPriceService stockPriceService;
 
     @Autowired
-    private StockPriceService stockPriceService;
+    public StockUpdaterScheduler(SharesRepository sharesRepository, StockPriceService stockPriceService) {
+        this.sharesRepository = sharesRepository;
+        this.stockPriceService = stockPriceService;
+    }
 
-    // This will run 20 times per day (every 72 minutes)
-    @Scheduled(fixedRate = 72 * 60 * 1000)
+    // Scheduled this job to run at 4:30 PM eastern time (New York), Monday - Friday
+    @Scheduled(cron = "0 30 16 ? * MON-FRI", zone = "America/New_York")
     public void fetchStockPrices() {
         updateStockPrices();
     }
 
+    //find and update all stock prices
     private void updateStockPrices() {
-        // Fetch all unique stock tickers from the shares table
         List<String> tickers = sharesRepository.findDistinctTickers();
 
         for (String ticker : tickers) {
-            stockPriceService.updateStockPrice(ticker);  // Update stock price in the database
+            stockPriceService.updateStockPrice(ticker);
         }
     }
 }

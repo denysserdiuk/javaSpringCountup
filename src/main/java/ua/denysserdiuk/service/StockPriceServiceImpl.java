@@ -1,10 +1,11 @@
 package ua.denysserdiuk.service;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import org.json.JSONObject;
 import ua.denysserdiuk.model.StockPrice;
 import ua.denysserdiuk.repository.StockPriceRepository;
 
@@ -13,53 +14,61 @@ import java.time.LocalDateTime;
 @Service
 public class StockPriceServiceImpl implements StockPriceService {
 
-    @Value("${alpha.vantage.api.key}")
+    @Value("${polygon.io.api.key}")
     private String apiKey;
 
+    private final StockPriceRepository stockPriceRepository;
+
     @Autowired
-    private StockPriceRepository stockPriceRepository;
+    public StockPriceServiceImpl(StockPriceRepository stockPriceRepository){
+        this.stockPriceRepository = stockPriceRepository;
+    }
+
 
     @Override
     public void updateStockPrice(String ticker) {
+        // Fetch the stock price for the given ticker from the database
+        StockPrice stockPrice = stockPriceRepository.findByTicker(ticker);
+
+        // Check if the price is outdated (e.g., older than 1 hour)
+        if (stockPrice != null && stockPrice.getLastUpdated().isAfter(LocalDateTime.now().minusHours(1))) {
+            System.out.println("Ticker " + ticker + " is up-to-date. No API call needed.");
+            return;
+        }
+
+        // Fetch stock price from Polygon.io API
+        String url = "https://api.polygon.io/v2/aggs/ticker/" + ticker + "/prev?adjusted=true&apiKey=" + apiKey;
+        RestTemplate restTemplate = new RestTemplate();
         try {
-            // Fetch the stock price for the given ticker
-            StockPrice stockPrice = stockPriceRepository.findByTicker(ticker);
-
-            // Check if the price is outdated (e.g., older than 1 hour)
-            if (stockPrice != null && stockPrice.getLastUpdated().isAfter(LocalDateTime.now().minusHours(1))) {
-                return; // Stock price is up-to-date, no need to call the API
-            }
-
-            // Fetch stock price from Alpha Vantage API
-            String url = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" + ticker + "&interval=5min&apikey=" + apiKey;
-            RestTemplate restTemplate = new RestTemplate();
             String result = restTemplate.getForObject(url, String.class);
             JSONObject jsonObject = new JSONObject(result);
-            JSONObject timeSeries = jsonObject.getJSONObject("Time Series (5min)");
-            String latestTime = timeSeries.keys().next();
-            JSONObject latestData = timeSeries.getJSONObject(latestTime);
 
-            double price = latestData.getDouble("4. close");
+            // Extract the "results" array and get the first item (previous close value)
+            JSONArray resultsArray = jsonObject.getJSONArray("results");
+            JSONObject lastResult = resultsArray.getJSONObject(0);
 
-            // If no stock price exists, create a new one; otherwise, update the existing entry
+            // Get the closing price (key "c")
+            double price = lastResult.getDouble("c");
+            System.out.println("Fetched closing price for ticker " + ticker + ": " + price);
+
+            // If no stock price exists, create a new entry; otherwise, update the existing entry
             if (stockPrice == null) {
                 stockPrice = new StockPrice(ticker, price);
+                System.out.println("Adding new stock price for ticker " + ticker);
             } else {
                 stockPrice.setPrice(price);
                 stockPrice.setLastUpdated(LocalDateTime.now());
+                System.out.println("Updating stock price for ticker " + ticker);
             }
 
             // Save the updated/new stock price to the database
             stockPriceRepository.save(stockPrice);
 
-        } catch (org.springframework.dao.DataIntegrityViolationException ex) {
-            // Catch the duplicate entry error
-            System.err.println("Duplicate value - ticker: " + ticker);
         } catch (Exception e) {
-            // Catch all other exceptions
             e.printStackTrace();
         }
     }
+
 
 
     @Override
