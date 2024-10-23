@@ -10,6 +10,7 @@ import java.util.List;
 
 public interface BudgetRepository extends JpaRepository<Budget, Long> {
     Budget findByUser(Users user);
+    Budget findByDescriptionAndUserId(String description, Long userId);
 
     @Query("SELECT b FROM Budget b WHERE b.user.id = :userId AND MONTH(b.date) = MONTH(CURRENT_DATE) AND YEAR(b.date) = YEAR(CURRENT_DATE)")
     List<Budget> findCurrentMonthProfitsByUser(@Param("userId") Long userId);
@@ -27,6 +28,12 @@ public interface BudgetRepository extends JpaRepository<Budget, Long> {
             @Param("userId") Long userId,
             @Param("type") String type,
             @Param("year") int year
+    );
+
+    @Query("SELECT SUM(b.amount) FROM Budget b WHERE b.user.id = :userId AND b.type = :type")
+    Double findTotalByUserAndType(
+            @Param("userId") Long userId,
+            @Param("type") String type
     );
 
     @Query("SELECT DISTINCT b.category FROM Budget b WHERE b.user.id = :userId")

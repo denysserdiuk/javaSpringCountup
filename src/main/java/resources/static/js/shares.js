@@ -13,8 +13,9 @@ $(document).ready(function() {
                             <td>${share.ticker}</td>
                             <td>${share.amount}</td>
                             <td>${share.purchaseDate}</td>
-                            <td>${share.price}</td>>
+                            <td>${share.price}</td>
                             <td id="price-${share.id}">Loading...</td>
+                            <td>${share.profit}</td>
                         </tr>
                     `;
                     sharesList.append(row);

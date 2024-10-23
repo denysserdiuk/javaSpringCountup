@@ -30,12 +30,6 @@ public class StockPriceServiceImpl implements StockPriceService {
         // Fetch the stock price for the given ticker from the database
         StockPrice stockPrice = stockPriceRepository.findByTicker(ticker);
 
-        // Check if the price is outdated (e.g., older than 1 hour)
-        if (stockPrice != null && stockPrice.getLastUpdated().isAfter(LocalDateTime.now().minusHours(1))) {
-            System.out.println("Ticker " + ticker + " is up-to-date. No API call needed.");
-            return;
-        }
-
         // Fetch stock price from Polygon.io API
         String url = "https://api.polygon.io/v2/aggs/ticker/" + ticker + "/prev?adjusted=true&apiKey=" + apiKey;
         RestTemplate restTemplate = new RestTemplate();

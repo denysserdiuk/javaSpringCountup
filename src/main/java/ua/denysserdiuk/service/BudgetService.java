@@ -1,11 +1,19 @@
 package ua.denysserdiuk.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 import ua.denysserdiuk.model.Budget;
+import ua.denysserdiuk.model.Shares;
 import ua.denysserdiuk.model.Users;
 import ua.denysserdiuk.repository.BudgetRepository;
+import ua.denysserdiuk.repository.SharesRepository;
+import ua.denysserdiuk.utils.CalculateBalanceUtil;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.TextStyle;
@@ -14,10 +22,12 @@ import java.util.*;
 @Service
 public class BudgetService implements BudgetLinesService {
     private final BudgetRepository budgetRepository;
+    private final SharesRepository sharesRepository;
 
     @Autowired
-    public BudgetService(BudgetRepository budgetRepository) {
+    public BudgetService(BudgetRepository budgetRepository, SharesRepository sharesRepository) {
         this.budgetRepository = budgetRepository;
+        this.sharesRepository = sharesRepository;
     }
 
     //Add New Budget line to DB
@@ -101,17 +111,49 @@ public class BudgetService implements BudgetLinesService {
     public Double getAnnualBalance(long userId, int year) {
         Double totalProfit = budgetRepository.findTotalByUserAndTypeAndYear(userId, "profit", year);
         Double totalExpense = budgetRepository.findTotalByUserAndTypeAndYear(userId, "loss", year);
-        return (totalProfit == null ? 0 : totalProfit) - (totalExpense == null ? 0 : totalExpense);
+        return CalculateBalanceUtil.calculateBalanceUtil(totalProfit, totalExpense);
     }
 
     public Double getMonthlyBalance(long userId, int month, int year) {
         Double totalProfit = budgetRepository.findTotalByUserAndTypeAndMonth(userId, "profit", month, year);
         Double totalExpense = budgetRepository.findTotalByUserAndTypeAndMonth(userId, "loss", month, year);
-        return (totalProfit == null ? 0 : totalProfit) - (totalExpense == null ? 0 : totalExpense);
+        return CalculateBalanceUtil.calculateBalanceUtil(totalProfit, totalExpense);
+    }
+
+    @Override
+    public Double getAllTimeBalance(long userId) {
+        Double totalProfit = budgetRepository.findTotalByUserAndType(userId, "profit");
+        Double totalExpense = budgetRepository.findTotalByUserAndType(userId,"loss");
+        return CalculateBalanceUtil.calculateBalanceUtil(totalProfit, totalExpense);
     }
 
     @Override
     public List<String> getUserCategories(long userId) {
         return budgetRepository.findCategoriesByUser(userId);
+    }
+
+    //
+    public String updateBudgetLinesForUser(long userId) {
+        List<Shares> sharesList = sharesRepository.findByUserId(userId);
+
+        for (Shares share : sharesList) {
+            Budget budgetLine = budgetRepository.findByDescriptionAndUserId(share.getTicker(), userId);
+
+            if (budgetLine != null) {
+                double updatedProfit = share.getProfit();
+
+                budgetLine.setAmount(Math.abs(updatedProfit));
+
+                if (updatedProfit > 0) {
+                    budgetLine.setType("profit");
+                } else {
+                    budgetLine.setType("loss");
+                }
+
+                budgetRepository.save(budgetLine);
+            }
+        }
+
+        return "Budget lines updated for user " + userId;
     }
 }

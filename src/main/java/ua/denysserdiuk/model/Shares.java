@@ -21,15 +21,21 @@ public class Shares {
     @Column(name = "purchase_date")
     private LocalDate purchaseDate;
     private double price;
+    private double profit;
 
     public Shares(){}
 
-    public Shares(Users user, String ticker, double amount, LocalDate purchaseDate, double price){
+    public Shares(Users user, String ticker,
+                  double amount,
+                  LocalDate purchaseDate,
+                  double price,
+                  double profit){
         this.user = user;
         this.ticker = ticker;
         this.amount = amount;
         this.purchaseDate = purchaseDate;
         this.price = price;
+        this.profit = profit;
     }
 
     public Long getId() {
@@ -78,6 +84,14 @@ public class Shares {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public double getProfit() {
+        return profit;
+    }
+
+    public void setProfit(double profit) {
+        this.profit = profit;
     }
 }
 

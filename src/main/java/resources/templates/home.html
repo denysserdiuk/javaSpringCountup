@@ -40,7 +40,7 @@
     <!-- Dashboard Header -->
     <header class="dashboard-header">
         <h2 class="dashboard-header__title">Dashboard</h2>
-        <h2 class="dashboard-header__current-month">Month: </h2>
+        <h2 class="dashboard-header__current-month">Today:<span th:text="${currentDate}"></span></h2>
         <button class="dashboard-header__button">Generate Report</button>
     </header>
 
@@ -48,19 +48,19 @@
     <div class="dashboard-cards">
         <div class="card">
             <h3 class="card__title">Earnings (Monthly)</h3>
-            <p class="card__value">$<span th:text="${monthlyBalance}"></span></p>
+            <p class="card__value">$ <span th:text="${monthlyBalance}"></span></p>
         </div>
         <div class="card">
             <h3 class="card__title">Earnings (Annual)</h3>
-            <p class="card__value">$<span th:text="${annualBalance}"></span></p>
+            <p class="card__value">$ <span th:text="${annualBalance}"></span></p>
         </div>
         <div class="card">
             <h3 class="card__title">Tasks</h3>
             <p class="card__value">50%</p>
         </div>
         <div class="card">
-            <h3 class="card__title">Pending Requests</h3>
-            <p class="card__value">18</p>
+            <h3 class="card__title">All Time Balance</h3>
+            <p class="card__value">$ <span th:text="${allTimeBalance}"></span></p>
         </div>
     </div>
     <!-- Expances and profits section -->

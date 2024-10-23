@@ -16,7 +16,7 @@ public class Budget {
     private Users user;
 
     private String description;
-    private float amount;
+    private double amount;
     private String type;
     private LocalDate date;
     private String category;
@@ -57,11 +57,11 @@ public class Budget {
         this.description = description;
     }
 
-    public float getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public void setAmount(float amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 

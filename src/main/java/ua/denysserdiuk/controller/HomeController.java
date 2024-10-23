@@ -8,6 +8,7 @@ import ua.denysserdiuk.repository.UserRepository;
 import ua.denysserdiuk.service.BudgetLinesService;
 import ua.denysserdiuk.utils.SecurityUtils;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -34,6 +35,9 @@ public class HomeController {
     @GetMapping("/home")
     public String home(Model model) {
 
+        LocalDate today = LocalDate.now();
+        model.addAttribute("currentDate", today);
+
         String username = SecurityUtils.getAuthenticatedUsername();
 
         Users user = userRepository.findByUsername(username);
@@ -49,6 +53,11 @@ public class HomeController {
                 LocalDate.now().getMonthValue(),
                 LocalDate.now().getYear());
         model.addAttribute("monthlyBalance", monthlyBalance);
+
+        double allTimeBalance = budgetLinesService.getAllTimeBalance(user.getId());
+        model.addAttribute("allTimeBalance", allTimeBalance);
+
+        budgetLinesService.updateBudgetLinesForUser(user.getId());
 
         return "home";
     }

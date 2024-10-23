@@ -1,34 +1,38 @@
 package ua.denysserdiuk.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import ua.denysserdiuk.model.Budget;
 import ua.denysserdiuk.model.Users;
 import ua.denysserdiuk.repository.UserRepository;
+import ua.denysserdiuk.service.BudgetLinesService;
 import ua.denysserdiuk.service.BudgetService;
 import ua.denysserdiuk.utils.SecurityUtils;
 
+import java.time.LocalDate;
 import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
 public class BudgetRestController {
 
-    @Autowired
-    private BudgetService budgetService;
+
+    private BudgetLinesService budgetLinesService;
     private final UserRepository userRepository;
 
-    public BudgetRestController(UserRepository userRepository) {
+    @Autowired
+    public BudgetRestController(BudgetLinesService budgetLinesService, UserRepository userRepository) {
         this.userRepository = userRepository;
+        this.budgetLinesService = budgetLinesService;
     }
 
     @GetMapping("/userBalance")
     public Map<String, Double> getUserMonthlyBalance() {
         String username = SecurityUtils.getAuthenticatedUsername();
         Users user = userRepository.findByUsername(username);
-        return budgetService.getMonthlyBalance(user.getId());
+        return budgetLinesService.getMonthlyBalance(user.getId());
     }
 
     @GetMapping("/CurrentMonthLossesByCategory")
@@ -36,6 +40,24 @@ public class BudgetRestController {
     public Map<String, Double> getCurrentMonthLossesByCategory() {
         String username = SecurityUtils.getAuthenticatedUsername();
         Users user = userRepository.findByUsername(username);
-        return budgetService.getCurrentMonthLossCategoryPercentages(user);
+        return budgetLinesService.getCurrentMonthLossCategoryPercentages(user);
     }
+
+    @PostMapping("/AddBudgetItem")
+    public ResponseEntity<String> addBudgetLineExpanse(@RequestBody Budget budget) {
+        String username = SecurityUtils.getAuthenticatedUsername();
+
+        Users user = userRepository.findByUsername(username);
+        budget.setUser(user);
+
+        if (budget.getDate() == null) {
+            budget.setDate(LocalDate.now());
+        }
+
+        budgetLinesService.addBudgetLine(budget);
+
+
+        return ResponseEntity.ok("New share saved successfully");
+    }
+
 }
