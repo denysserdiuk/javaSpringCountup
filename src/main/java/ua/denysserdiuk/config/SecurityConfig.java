@@ -30,13 +30,15 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.POST, "/CreateUser", "/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/CreateUser", "/verify", "/login").permitAll()
                         .requestMatchers("/api/register", "/","/register", "/login", "/index", "/css/**", "/js/**", "/img/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form ->form
                         .loginPage("/login")
+                        .loginProcessingUrl("/login")
                         .defaultSuccessUrl("/home", true)
+                        .failureUrl("/login?error=true")
                         .permitAll()
                 )
                 .logout(LogoutConfigurer::permitAll);

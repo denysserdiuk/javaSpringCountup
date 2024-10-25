@@ -1,4 +1,5 @@
 @import url(global.css);
+@import url(home-main.css);
 
 body {
     background: linear-gradient(to bottom right, var(--primary-dark), var(--primary-darker-green),
@@ -49,8 +50,16 @@ body {
     font-size: 14px;
     width: 48%;
 }
+.register-error-message{
+    width: 100%;
+    color: var(--bs-danger);
+    font-size: 12px;
+    margin-top: 2px;
+    margin-bottom: 15px;
+}
 
-.register-page__input--email {
+.register-page__input--email, .register-page__input--first-name,
+.register-page__input--username{
     width: 100%;
 }
 

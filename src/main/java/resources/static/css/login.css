@@ -38,6 +38,13 @@ body {
   display: flex;
   flex-direction: column;
 }
+.login-error-message{
+  width: 100%;
+  color: var(--bs-danger);
+  font-size: 12px;
+  margin-top: 2px;
+  margin-bottom: 15px;
+}
 
 .login-page__input {
   padding: 10px;

@@ -1,105 +1,155 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Agency - Start Bootstrap Theme</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="/css/register.css" rel="stylesheet" />
-    </head>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Agency - Start Bootstrap Theme</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico"/>
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/css/register.css" rel="stylesheet"/>
+</head>
 
-    <body>
-        <div class="register-page">
-            <div class="register-page__container">
-                <h2 class="register-page__heading">Create an Account!</h2>
-                <form
-                        th:action="@{/CreateUser}"
-                        method="post"
-                        class="register-page__form"
-                >
-                    <div class="register-page__input-group">
-                        <input
-                                type="text"
-                                name="name"
-                                placeholder="Full Name"
-                                class="register-page__input register-page__input--first-name"
-                        />
-                        <input
-                                type="text"
-                                name="username"
-                                placeholder="Username"
-                                required
-                                class="register-page__input register-page__input--username"
-                        />
-                    </div>
-                    <input
-                            type="email"
-                            name="email"
-                            placeholder="Email Address"
-                            required
-                            class="register-page__input register-page__input--email"
-                    />
-
-                    <div class="register-page__input-group">
-                        <input
-                                type="password"
-                                name="password"
-                                placeholder="Password"
-                                required
-                                class="register-page__input register-page__input--password"
-                        />
-                        <input
-                                type="password"
-                                name="repeatPassword"
-                                placeholder="Repeat Password"
-                                required
-                                class="register-page__input register-page__input--repeat-password"
-                        />
-                    </div>
-
-                    <input
-                            type="hidden"
-                            th:name="${_csrf.parameterName}"
-                            th:value="${_csrf.token}"
-                    />
-
-                    <button
-                            type="submit"
-                            class="register-page__button register-page__button--submit"
-                    >
-                        Register Account
-                    </button>
-
-                    <hr class="register-page__divider" />
-
-                    <button
-                            type="button"
-                            class="register-page__button register-page__button--google"
-                    >
-                        Register with Google
-                    </button>
-                    <button
-                            type="button"
-                            class="register-page__button register-page__button--facebook"
-                    >
-                        Register with Facebook
-                    </button>
-                </form>
-                <div class="register-page__footer">
-                    <a href="#" class="register-page__link">Forgot Password?</a>
-                    <a href="login.html" class="register-page__link">Already have an account? Login!</a>
-                </div>
+<body>
+<div class="register-page">
+    <div class="register-page__container">
+        <h2 class="register-page__heading">Create an Account!</h2>
+        <form
+                th:action="@{/CreateUser}"
+                method="post"
+                class="register-page__form"
+        >
+            <div class="register-page__input-group">
+                <input
+                        type="text"
+                        name="name"
+                        placeholder="Full Name"
+                        class="register-page__input register-page__input--first-name"
+                />
             </div>
+            <div class="register-page__input-group">
+                <input
+                        type="text"
+                        name="username"
+                        placeholder="Username"
+                        required
+                        class="register-page__input register-page__input--username"
+                />
+            </div>
+            <div class="username-not-unique register-error-message" th:if="${usernameError}">
+                <span th:text="${usernameError}"></span>
+            </div>
+            <input
+                    type="email"
+                    name="email"
+                    placeholder="Email Address"
+                    required
+                    class="register-page__input register-page__input--email"
+            />
+
+            <div class="register-page__input-group">
+                <input
+                        type="password"
+                        name="password"
+                        placeholder="Password"
+                        required
+                        class="register-page__input register-page__input--password"
+                />
+                <input
+                        type="password"
+                        name="repeatPassword"
+                        placeholder="Repeat Password"
+                        required
+                        class="register-page__input register-page__input--repeat-password"
+                />
+            </div>
+            <div class="passwords-dont-match register-error-message" th:if="${passwordError}">
+                <span th:text="${passwordError}"></span>
+            </div>
+
+            <input
+                    type="hidden"
+                    th:name="${_csrf.parameterName}"
+                    th:value="${_csrf.token}"
+            />
+
+            <button
+                    type="submit"
+                    class="register-page__button register-page__button--submit"
+            >
+                Register Account
+            </button>
+
+            <hr class="register-page__divider"/>
+
+            <button
+                    type="button"
+                    class="register-page__button register-page__button--google"
+            >
+                Register with Google
+            </button>
+            <button
+                    type="button"
+                    class="register-page__button register-page__button--facebook"
+            >
+                Register with Facebook
+            </button>
+        </form>
+        <div class="register-page__footer">
+            <a href="#" class="register-page__link">Forgot Password?</a>
+            <a href="login.html" class="register-page__link">Already have an account? Login!</a>
         </div>
-    </body>
+    </div>
+</div>
+<footer></footer>
+<div class="modal fade" id="verify-email-modal" tabindex="-1" aria-labelledby="verify-email__modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title fs-5" id="verify-email__modal">Add New Stock</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form th:action="@{/verify}" method="post" class="modal-form" id="verify-email-form">
+                <div class="modal-body">
+                    <div class="modal-form__group">
+                        <label for="verification" class="modal-form__label">Verification Code</label>
+                        <input type="number" name="verification" id="verification" class="modal-form__input" required>
+                        <!-- Display error message if verification fails -->
+                        <div class="error-message" th:if="${verificationError}">
+                            <span th:text="${verificationError}"></span>
+                        </div>
+                    </div>
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-close-modal" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-save-changes-modal">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var verificationPending = /*[[${verificationPending}]]*/ false;
+    if (verificationPending) {
+        var myModal = new bootstrap.Modal(document.getElementById('verify-email-modal'));
+        myModal.show();
+    }
+    /*]]>*/
+</script>
+</body>
 
 </html>

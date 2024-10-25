@@ -65,4 +65,7 @@ public class HomeController {
     public String shares(){
         return "shares";
     }
+
+    @GetMapping("/data")
+    public String data(){ return "data"; }
 }
