@@ -7,13 +7,14 @@ import ua.denysserdiuk.model.Budget;
 import ua.denysserdiuk.model.Users;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface BudgetRepository extends JpaRepository<Budget, Long> {
-    Budget findByUser(Users user);
     Budget findByDescriptionAndUserId(String description, Long userId);
+    Optional<Budget> findByIdAndUser(Long id, Users user);
 
-    @Query("SELECT b FROM Budget b WHERE b.user.id = :userId AND MONTH(b.date) = MONTH(CURRENT_DATE) AND YEAR(b.date) = YEAR(CURRENT_DATE)")
-    List<Budget> findCurrentMonthProfitsByUser(@Param("userId") Long userId);
+    @Query("SELECT b FROM Budget b WHERE b.user.id = :userId AND MONTH(b.date) = :month AND YEAR(b.date) = :year")
+    List<Budget> findBudgetsByUserAndMonthYear(@Param("userId") Long userId, @Param("month") int month, @Param("year") int year);
 
     @Query("SELECT SUM(b.amount) FROM Budget b WHERE b.user.id = :userId AND b.type = :type AND MONTH(b.date) = :month AND YEAR(b.date) = :year")
     Double findTotalByUserAndTypeAndMonth(
@@ -38,5 +39,4 @@ public interface BudgetRepository extends JpaRepository<Budget, Long> {
 
     @Query("SELECT DISTINCT b.category FROM Budget b WHERE b.user.id = :userId")
     List<String> findCategoriesByUser(@Param("userId") Long userId);
-
 }

@@ -44,7 +44,19 @@ public class HomeController {
         model.addAttribute("username", user.getUsername());
 
         double annualBalance = budgetLinesService.getAnnualBalance(user.getId(), LocalDate.now().getYear());
+        double lastYearBalance = budgetLinesService.getAnnualBalance(user.getId(), LocalDate.now().minusYears(1).getYear());
+
+        double yearToYearRatio;
+        if (lastYearBalance != 0) {
+            yearToYearRatio = (annualBalance / lastYearBalance) * 100;
+            yearToYearRatio = Math.round(yearToYearRatio * 10.0) / 10.0;
+        } else {
+            yearToYearRatio = 0.0;
+        }
+
         model.addAttribute("annualBalance", annualBalance);
+        model.addAttribute("yearToYear", yearToYearRatio);
+
 
         List<String> categories = budgetLinesService.getUserCategories(user.getId());
         model.addAttribute("categories", categories);

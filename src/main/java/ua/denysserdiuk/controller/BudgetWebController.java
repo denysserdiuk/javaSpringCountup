@@ -49,9 +49,7 @@ public class BudgetWebController {
     public List<Budget> getCurrentMonthBudgets() {
         String username = SecurityUtils.getAuthenticatedUsername();
         Users user = userRepository.findByUsername(username);
-        return budgetLinesService.getCurrentMonthBudgetLines(user);
+        return budgetLinesService.getCurrentMonthBudgetLines(user, LocalDate.now().getMonthValue(), LocalDate.now().getYear());
     }
-
-
 
 }

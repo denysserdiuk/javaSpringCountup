@@ -1,10 +1,7 @@
 package ua.denysserdiuk.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 import ua.denysserdiuk.model.Budget;
 import ua.denysserdiuk.model.Shares;
 import ua.denysserdiuk.model.Users;
@@ -12,8 +9,6 @@ import ua.denysserdiuk.repository.BudgetRepository;
 import ua.denysserdiuk.repository.SharesRepository;
 import ua.denysserdiuk.utils.CalculateBalanceUtil;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.TextStyle;
@@ -45,10 +40,20 @@ public class BudgetService implements BudgetLinesService {
         return "Budget line added";
     }
 
+    @Override
+    public Budget saveBudgetLine(Budget budget) {
+        return budgetRepository.save(budget);
+    }
+
+    @Override
+    public void deleteBudgetLine(Budget budget) {
+        budgetRepository.delete(budget);
+    }
+
     //Get budget items that have current month date per user
 
-    public List<Budget> getCurrentMonthBudgetLines(Users user) {
-        return budgetRepository.findCurrentMonthProfitsByUser(user.getId());
+    public List<Budget> getCurrentMonthBudgetLines(Users user, int month, int year) {
+        return budgetRepository.findBudgetsByUserAndMonthYear(user.getId(), month, year);
     }
 
     //Get Yearly Running balance per user (profits - losses per each user per month)
@@ -79,7 +84,11 @@ public class BudgetService implements BudgetLinesService {
     //Shows all the losses by categories in percentage per current month (for Donut chart).
 
     public Map<String, Double> getCurrentMonthLossCategoryPercentages(Users user) {
-        List<Budget> currentMonthBudgets = budgetRepository.findCurrentMonthProfitsByUser(user.getId());
+        List<Budget> currentMonthBudgets = budgetRepository.findBudgetsByUserAndMonthYear(
+                        user.getId(),
+                        LocalDate.now().getMonthValue(),
+                        LocalDate.now().getYear()
+        );
 
         Map<String, Double> categoryAmounts = new HashMap<>();
         double totalLossAmount = 0;
@@ -156,4 +165,11 @@ public class BudgetService implements BudgetLinesService {
 
         return "Budget lines updated for user " + userId;
     }
+
+    @Override
+    public Optional<Budget> findByIdAndUser(Long id, Users user) {
+        return budgetRepository.findByIdAndUser(id, user);
+    }
+
+
 }
