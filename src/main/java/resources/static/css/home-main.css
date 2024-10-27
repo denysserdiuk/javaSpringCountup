@@ -128,6 +128,16 @@
 .btn:hover {
     background-color: var(--primary-dark) !important;
 }
+
+.sidebar__menu-item-icon-delete{
+    color: var(--primary-dark);
+    transition: background-color 0.3s ease-in-out;
+    text-align: center;
+}
+.sidebar__menu-item-icon-delete:hover{
+    color: var(--primary-light-green);
+}
+
 .options-button {
     background: none;
     border: none;

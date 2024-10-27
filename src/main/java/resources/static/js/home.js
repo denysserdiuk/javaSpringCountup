@@ -36,14 +36,8 @@ $(document).ready(function () {
 
                 // Create the options menu HTML
                 var optionsMenu = `
-                    <div class="dropdown">
-                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton${budget.id}" data-bs-toggle="dropdown" aria-expanded="false">
-                            &#x22EE;
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton${budget.id}">
-                            <li><a class="dropdown-item edit-budget-item" href="#" data-id="${budget.id}" data-type="${budget.type}">Edit</a></li>
-                            <li><a class="dropdown-item delete-budget-item" href="#" data-id="${budget.id}" data-type="${budget.type}">Delete</a></li>
-                        </ul>
+                    <div class="delete-budget-line">
+                       <a class="delete-budget-line-link" href="#"><i class="fas fa-trash sidebar__menu-item-icon-delete"></i></a>
                     </div>
                 `;
 
