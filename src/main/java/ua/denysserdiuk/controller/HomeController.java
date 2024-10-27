@@ -68,4 +68,9 @@ public class HomeController {
 
     @GetMapping("/data")
     public String data(){ return "data"; }
+
+    @GetMapping("/404NotFound")
+    public String notFound(){
+        return "404-not-found";
+    }
 }

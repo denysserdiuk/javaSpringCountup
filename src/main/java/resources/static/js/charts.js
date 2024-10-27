@@ -6,18 +6,37 @@ $(document).ready(function () {
         success: function (data) {
             const earningsCtx = document.getElementById('earningsChart').getContext('2d');
 
+            // Use your palette colors
+            const borderColor = '#1A3636'; // --primary-dark
+            const backgroundColor = '#D6BD98'; // --primary-cream
+
+            // Create gradient for the line
+            const gradientStroke = earningsCtx.createLinearGradient(0, 0, 0, 400);
+            gradientStroke.addColorStop(0, borderColor);
+            gradientStroke.addColorStop(1, backgroundColor);
+
+            // Create gradient for the fill
+            const gradientFill = earningsCtx.createLinearGradient(0, 0, 0, 400);
+            gradientFill.addColorStop(0, 'rgba(214, 189, 152, 0.5)'); // --primary-cream with opacity
+            gradientFill.addColorStop(1, 'rgba(214, 189, 152, 0)');
+
             const earningsChart = new Chart(earningsCtx, {
                 type: 'line',
                 data: {
-                    labels: Object.keys(data), // Month names from the returned map
+                    labels: Object.keys(data),
                     datasets: [{
                         label: 'Balance',
-                        data: Object.values(data), // Balance values
-                        borderColor: '#495057', // SB Admin 2's primary color
-                        backgroundColor: 'rgba(78, 115, 223, 0.05)', // Light fill for the line
+                        data: Object.values(data),
+                        borderColor: gradientStroke,
+                        backgroundColor: gradientFill,
                         borderWidth: 3,
-                        pointBackgroundColor: '#5eb535', // Color for the points
-                        tension: 0.4, // Smooth the line a little bit
+                        pointBackgroundColor: '#FFFFFF',
+                        pointBorderColor: borderColor,
+                        pointHoverBackgroundColor: borderColor,
+                        pointHoverBorderColor: '#FFFFFF',
+                        pointRadius: 6,
+                        pointHoverRadius: 8,
+                        tension: 0.4,
                         fill: true
                     }]
                 },
@@ -28,14 +47,31 @@ $(document).ready(function () {
                         x: {
                             grid: {
                                 display: false
+                            },
+                            ticks: {
+                                font: {
+                                    family: 'var(--bs-body-font-family)',
+                                    size: 12,
+                                    weight: '500'
+                                },
+                                color: '#6c757d'
                             }
                         },
                         y: {
                             beginAtZero: true,
                             ticks: {
+                                font: {
+                                    family: 'var(--bs-body-font-family)',
+                                    size: 12,
+                                    weight: '500'
+                                },
+                                color: '#6c757d',
                                 callback: function (value) {
-                                    return '$' + value.toLocaleString(); // Format y-axis values as currency
+                                    return '$' + value.toLocaleString();
                                 }
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
                             }
                         }
                     },
@@ -44,10 +80,34 @@ $(document).ready(function () {
                             display: true,
                             position: 'top',
                             labels: {
-                                color: '#858796',
+                                color: '#343a40',
                                 font: {
-                                    family: 'Roboto Slab',
-                                    size: 14
+                                    family: 'var(--bs-body-font-family)',
+                                    size: 14,
+                                    weight: '600'
+                                }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: '#FFFFFF',
+                            titleColor: '#343a40',
+                            bodyColor: '#343a40',
+                            borderColor: borderColor,
+                            borderWidth: 1,
+                            titleFont: {
+                                family: 'var(--bs-body-font-family)',
+                                size: 14,
+                                weight: '600'
+                            },
+                            bodyFont: {
+                                family: 'var(--bs-body-font-family)',
+                                size: 12,
+                                weight: '500'
+                            },
+                            callbacks: {
+                                label: function (context) {
+                                    let value = context.parsed.y;
+                                    return '$' + value.toLocaleString();
                                 }
                             }
                         }
@@ -61,73 +121,92 @@ $(document).ready(function () {
     });
 });
 
-
-
-//DONUT CHART HOME
+// Donut Chart
 $(document).ready(function () {
-    // Load current month loss category percentages
     $.ajax({
         url: 'api/CurrentMonthLossesByCategory',
         type: 'GET',
         success: function (data) {
-            // The returned data is a map of category names to percentages
-            var categories = Object.keys(data);  // Get the category names
-            var percentages = Object.values(data); // Get the percentages for each category
+            var categories = Object.keys(data);
+            var percentages = Object.values(data);
 
-            // Define a list of colors for the chart
             var colorPalette = [
-                '#5eb535', '#495057', '#2d651b', '#212529', '#D6BD98', '#677D6A', '#40534C'
+                '#1A3636',          // --primary-dark
+                '#40534C',          // --primary-darker-green
+                '#677D6A',          // --primary-light-green
+                '#D6BD98',          // --primary-cream
+                '#495057',          // --bs-gray-secondary
+                '#5eb535',          // --filler-color
             ];
 
-            // Extend the palette with more colors if needed (up to 115 colors)
-            // You can repeat the colors if the number of categories exceeds the color list length
-            while (colorPalette.length < 115) {
+            // Extend the palette if necessary
+            while (colorPalette.length < categories.length) {
                 colorPalette = colorPalette.concat(colorPalette);
             }
 
-            // Select colors from the predefined palette (one color per category)
             var colors = categories.map(function (_, index) {
-                return colorPalette[index % colorPalette.length]; // Cycle through the palette
+                return colorPalette[index % colorPalette.length];
             });
 
-            // Update the doughnut chart with the dynamic data
             const revenueCtx = document.getElementById('revenueChart').getContext('2d');
             const revenueChart = new Chart(revenueCtx, {
                 type: 'doughnut',
                 data: {
-                    labels: categories, // The category names
+                    labels: categories,
                     datasets: [{
-                        data: percentages, // The percentages of losses per category
-                        backgroundColor: colors, // Use colors from the predefined palette
-                        hoverBackgroundColor: colors, // Use the same colors for hover
-                        hoverBorderColor: 'rgba(234, 236, 244, 1)',
+                        data: percentages,
+                        backgroundColor: colors,
+                        hoverBackgroundColor: colors.map(color => shadeColor(color, -10)),
+                        hoverBorderColor: '#FFFFFF',
+                        borderWidth: 2,
                     }]
                 },
                 options: {
                     maintainAspectRatio: false,
                     responsive: true,
+                    aspectRatio: 1,
                     plugins: {
                         legend: {
                             display: true,
                             position: 'right',
                             labels: {
-                                color: '#858796',
+                                color: '#343a40',
                                 font: {
-                                    family: 'Roboto Slab',  // Reference the custom font from global.css
+                                    family: 'var(--bs-body-font-family)',
                                     size: 14,
+                                    weight: '500'
                                 },
+                                usePointStyle: true,
+                                pointStyle: 'circle',
                                 generateLabels: function (chart) {
                                     return chart.data.labels.map(function (label, i) {
                                         let value = chart.data.datasets[0].data[i];
                                         return {
                                             text: label + ': ' + Math.round(value) + '%',
                                             fillStyle: chart.data.datasets[0].backgroundColor[i],
+                                            strokeStyle: chart.data.datasets[0].backgroundColor[i],
+                                            lineWidth: 1,
                                         };
                                     });
                                 }
                             }
                         },
                         tooltip: {
+                            backgroundColor: '#FFFFFF',
+                            titleColor: '#343a40',
+                            bodyColor: '#343a40',
+                            borderColor: '#dddddd',
+                            borderWidth: 1,
+                            titleFont: {
+                                family: 'var(--bs-body-font-family)',
+                                size: 14,
+                                weight: '600'
+                            },
+                            bodyFont: {
+                                family: 'var(--bs-body-font-family)',
+                                size: 12,
+                                weight: '500'
+                            },
                             callbacks: {
                                 label: function (tooltipItem) {
                                     let value = tooltipItem.raw;
@@ -136,7 +215,7 @@ $(document).ready(function () {
                             }
                         }
                     },
-                    cutout: '75%',
+                    cutout: '70%',
                 }
             });
         },
@@ -144,4 +223,25 @@ $(document).ready(function () {
             console.log("Error fetching loss category data:", error);
         }
     });
+
+    // Helper function to shade a color
+    function shadeColor(color, percent) {
+        let R = parseInt(color.substring(1,3),16);
+        let G = parseInt(color.substring(3,5),16);
+        let B = parseInt(color.substring(5,7),16);
+
+        R = parseInt(R * (100 + percent) / 100);
+        G = parseInt(G * (100 + percent) / 100);
+        B = parseInt(B * (100 + percent) / 100);
+
+        R = (R<255)?R:255;
+        G = (G<255)?G:255;
+        B = (B<255)?B:255;
+
+        let RR = ((R.toString(16).length==1)?"0"+R.toString(16):R.toString(16));
+        let GG = ((G.toString(16).length==1)?"0"+G.toString(16):G.toString(16));
+        let BB = ((B.toString(16).length==1)?"0"+B.toString(16):B.toString(16));
+
+        return "#"+RR+GG+BB;
+    }
 });
