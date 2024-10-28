@@ -190,6 +190,9 @@
     border-color: var(--primary-light-green);
     outline: none;
 }
+.delete-budget-line-link{
+    border: 0px;
+}
 
 .btn-save-changes-modal,
 .btn-close-modal {

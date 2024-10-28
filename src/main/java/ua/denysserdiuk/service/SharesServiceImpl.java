@@ -52,4 +52,9 @@ public class SharesServiceImpl implements SharesService {
 
         return profit.doubleValue();
     }
+
+    @Override
+    public void deleteShare(Shares share) {
+        sharesRepository.delete(share);
+    }
 }

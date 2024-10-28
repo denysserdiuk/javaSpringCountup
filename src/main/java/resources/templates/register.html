@@ -56,6 +56,9 @@
                     required
                     class="register-page__input register-page__input--email"
             />
+            <div class="email-not-unique register-error-message" th:if="${emailError}">
+                <span th:text="${emailError}"></span>
+            </div>
 
             <div class="register-page__input-group">
                 <input

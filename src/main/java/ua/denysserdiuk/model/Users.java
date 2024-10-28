@@ -2,6 +2,8 @@ package ua.denysserdiuk.model;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name= "users")
 public class Users {
@@ -80,5 +82,18 @@ public class Users {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Users users = (Users) o;
+        return id == users.id && Objects.equals(username, users.username) && Objects.equals(name, users.name) && Objects.equals(email, users.email) && Objects.equals(password, users.password);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, username, name, email, password);
     }
 }

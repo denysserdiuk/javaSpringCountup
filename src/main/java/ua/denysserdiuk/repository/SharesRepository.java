@@ -2,7 +2,11 @@ package ua.denysserdiuk.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import ua.denysserdiuk.model.Budget;
 import ua.denysserdiuk.model.Shares;
+import ua.denysserdiuk.model.Users;
+
 import java.util.List;
 
 public interface SharesRepository extends JpaRepository<Shares, Long> {
@@ -12,6 +16,5 @@ public interface SharesRepository extends JpaRepository<Shares, Long> {
     // Fetch all unique stock tickers from the shares table
     @Query("SELECT DISTINCT s.ticker FROM Shares s")
     List<String> findDistinctTickers();
-
 
 }

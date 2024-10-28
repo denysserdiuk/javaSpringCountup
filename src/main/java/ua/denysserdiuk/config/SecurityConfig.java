@@ -34,6 +34,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/CreateUser", "/verify","/resendVerificationCode","/contact", "/login").permitAll()
                         .requestMatchers("/api/register", "/","/register", "/login", "/index", "/css/**", "/js/**", "/img/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/deleteBudgetItem/**").authenticated()
+                        .requestMatchers("/admin/**", "/admin").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .formLogin(form ->form

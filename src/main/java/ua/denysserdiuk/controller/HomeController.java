@@ -73,16 +73,24 @@ public class HomeController {
 
         return "home";
     }
+
     @GetMapping("/shares")
-    public String shares(){
+    public String shares() {
         return "shares";
     }
 
     @GetMapping("/data")
-    public String data(){ return "data"; }
+    public String data() {
+        return "data";
+    }
 
     @GetMapping("/404NotFound")
-    public String notFound(){
+    public String notFound() {
         return "404-not-found";
     }
+    @GetMapping("/logout")
+    public String logOut () {
+            return "login";
+        }
 }
+

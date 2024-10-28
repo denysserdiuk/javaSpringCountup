@@ -46,6 +46,13 @@ public class UserRegistrationWebController {
             model.addAttribute("usernameError", "Username is not unique");
             return "register";
         }
+
+        Users user1 = userRepository.findByEmail(users.getEmail());
+        if (user1 != null) {
+            model.addAttribute("emailError", "Email is not unique");
+            return "register";
+        }
+
         int verificationCode = new Random().nextInt(900000) + 100000;
         LocalDateTime expiryDate = LocalDateTime.now().plusMinutes(10);
         VerificationToken token = new VerificationToken(users, verificationCode, expiryDate);

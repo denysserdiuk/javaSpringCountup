@@ -8,7 +8,7 @@ import ua.denysserdiuk.model.Users;
 
 public interface UserRepository extends JpaRepository<Users, Long> {
     Users findByUsername(String username);
-
+    Users findByEmail(String email);
     @Query("SELECT u FROM Users u WHERE u.username = :username")
     Users findByUsernameCaseSensitive(@Param("username") String username);
 }
