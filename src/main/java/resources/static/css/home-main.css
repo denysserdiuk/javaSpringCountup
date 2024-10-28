@@ -283,6 +283,7 @@
 
     .window-container {
         height: 300px;
+        width: auto;
     }
     .chart-container canvas {
         height: 300px !important;

@@ -15,9 +15,19 @@ window.addEventListener('load', function () {
 });
 
 //budget lines
-
 $(document).ready(function () {
-    // Load current month budget lines
+    fetchBudgetLines();
+    const csrfToken = $('meta[name="_csrf"]').attr('content');
+    const csrfHeader = $('meta[name="_csrf_header"]').attr('content');
+    // Event delegation for delete buttons
+    $('#profits-table, #losses-table').on('click', '.delete-budget-line-link', function () {
+        var budgetId = $(this).data('id');
+        deleteBudgetItem(budgetId, csrfToken, csrfHeader);
+    });
+});
+
+
+function fetchBudgetLines() {
     $.ajax({
         url: '/currentMonthBudgets',
         type: 'GET',
@@ -31,17 +41,16 @@ $(document).ready(function () {
 
             // Loop through the data and append rows to the appropriate table
             data.forEach(function (budget) {
-                // Format the date (assuming date is in ISO format like "2023-10-21")
                 var dateAdded = new Date(budget.date).toLocaleDateString();
 
-                // Create the options menu HTML
                 var optionsMenu = `
                     <div class="delete-budget-line">
-                       <a class="delete-budget-line-link" href="#"><i class="fas fa-trash sidebar__menu-item-icon-delete"></i></a>
+                       <button class="delete-budget-line-link" data-id="${budget.id}">
+                           <i class="fas fa-trash sidebar__menu-item-icon-delete"></i>
+                       </button>
                     </div>
                 `;
 
-                // Create the table row HTML
                 var rowHtml = `
                     <tr>
                         <td>${budget.description}</td>
@@ -57,74 +66,35 @@ $(document).ready(function () {
                     lossesTableBody.append(rowHtml);
                 }
             });
-
-            // Attach event handlers for edit and delete options
-            $('.edit-budget-item').on('click', function (e) {
-                e.preventDefault();
-                var budgetId = $(this).data('id');
-                var budgetType = $(this).data('type');
-                // Open edit modal and populate with budget item data
-                openEditModal(budgetId, budgetType);
-            });
-
-            $('.delete-budget-item').on('click', function (e) {
-                e.preventDefault();
-                var budgetId = $(this).data('id');
-                var budgetType = $(this).data('type');
-                // Confirm deletion and delete the budget item
-                deleteBudgetItem(budgetId, budgetType);
-            });
         },
         error: function (error) {
             console.log("Error fetching budget lines:", error);
         }
     });
-});
-
-// Function to open the edit modal (you need to implement this)
-function openEditModal(budgetId, budgetType) {
-    // Fetch budget item data and populate the edit form
-    // Then, show the edit modal
 }
 
-// Function to delete a budget item (you need to implement this)
-function deleteBudgetItem(budgetId, budgetType) {
-    if (confirm('Are you sure you want to delete this item?')) {
+function deleteBudgetItem(id, csrfToken, csrfHeader) {
+
+    console.log('Retrieved CSRF Token from Meta Tag:', csrfToken);
+
+    if (confirm("Are you sure you want to delete this budget item?")) {
         $.ajax({
-            url: '/api/deleteBudgetItem',
-            type: 'POST',
-            data: { id: budgetId },
-            success: function () {
-                // Reload the budget lines after deletion
-                location.reload();
+            url: `/api/deleteBudgetItem/${id}`,
+            type: 'POST', // Or 'DELETE' if you switch the controller
+            headers: {
+                [csrfHeader]: csrfToken
+            },
+            success: function (response) {
+                alert(response);
+                fetchBudgetLines();
             },
             error: function (error) {
                 console.log("Error deleting budget item:", error);
+                alert("An error occurred while trying to delete the budget item.");
             }
         });
     }
 }
-
-
-// Handle the edit form submission
-$('#edit-budget-form').on('submit', function (e) {
-    e.preventDefault();
-    var formData = $(this).serialize();
-
-    $.ajax({
-        url: '/api/updateBudgetItem',
-        type: 'POST',
-        data: formData,
-        success: function () {
-            // Close the modal and reload the budget lines
-            $('#edit-budget-modal').modal('hide');
-            location.reload();
-        },
-        error: function (error) {
-            console.log("Error updating budget item:", error);
-        }
-    });
-});
 
 
 //Adding new category
@@ -134,10 +104,10 @@ function toggleNewCategoryInput(selectElement, formType) {
     var newCategoryInput = document.getElementById('new-category-' + formType);
 
     if (selectElement.value === 'Other') {
-        newCategoryGroup.style.display = 'flex'; // Show the new category input field
+        newCategoryGroup.style.display = 'flex';
     } else {
-        newCategoryGroup.style.display = 'none'; // Hide the new category input field
-        newCategoryInput.value = ''; // Clear the input when not needed
+        newCategoryGroup.style.display = 'none';
+        newCategoryInput.value = '';
     }
 }
 

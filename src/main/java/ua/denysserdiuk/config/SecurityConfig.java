@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import ua.denysserdiuk.service.CustomUserDetailsService;
 
 @Configuration
@@ -32,6 +33,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.POST, "/CreateUser", "/verify","/resendVerificationCode","/contact", "/login").permitAll()
                         .requestMatchers("/api/register", "/","/register", "/login", "/index", "/css/**", "/js/**", "/img/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/deleteBudgetItem/**").authenticated()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form ->form

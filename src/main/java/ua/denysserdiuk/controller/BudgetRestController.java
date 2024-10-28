@@ -3,13 +3,11 @@ package ua.denysserdiuk.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ua.denysserdiuk.model.Budget;
 import ua.denysserdiuk.model.Users;
 import ua.denysserdiuk.repository.UserRepository;
 import ua.denysserdiuk.service.BudgetLinesService;
-import ua.denysserdiuk.service.BudgetService;
 import ua.denysserdiuk.utils.SecurityUtils;
 
 import java.time.LocalDate;
@@ -21,7 +19,7 @@ import java.util.Optional;
 @RequestMapping("/api")
 public class BudgetRestController {
 
-    private BudgetLinesService budgetLinesService;
+    private final BudgetLinesService budgetLinesService;
     private final UserRepository userRepository;
 
     @Autowired
@@ -97,20 +95,18 @@ public class BudgetRestController {
         }
     }
 
-    @PostMapping("/deleteBudgetItem")
-    @ResponseBody
-    public ResponseEntity<String> deleteBudgetItem(@RequestParam("id") Long id) {
+    @PostMapping("/deleteBudgetItem/{id}")
+    public ResponseEntity<String> deleteBudgetItem(@PathVariable("id") Long id) {
         String username = SecurityUtils.getAuthenticatedUsername();
         Users user = userRepository.findByUsername(username);
-
-        // Verify that the budget item belongs to the user
+        System.out.println("***** updating budget item.");
         Optional<Budget> budgetOptional = budgetLinesService.findByIdAndUser(id, user);
+
         if (budgetOptional.isPresent()) {
             budgetLinesService.deleteBudgetLine(budgetOptional.get());
-            return new ResponseEntity<>("Budget item deleted successfully", HttpStatus.OK);
+            return ResponseEntity.ok("Budget item deleted successfully");
         } else {
-            return new ResponseEntity<>("Budget item not found or unauthorized", HttpStatus.NOT_FOUND);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Budget item not found or unauthorized");
         }
     }
-
 }

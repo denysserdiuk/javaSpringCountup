@@ -1,11 +1,11 @@
 package ua.denysserdiuk.controller;
 
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import ua.denysserdiuk.model.Budget;
 import ua.denysserdiuk.model.Users;
 import ua.denysserdiuk.repository.UserRepository;
@@ -14,6 +14,7 @@ import ua.denysserdiuk.utils.SecurityUtils;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class BudgetWebController {
@@ -51,5 +52,4 @@ public class BudgetWebController {
         Users user = userRepository.findByUsername(username);
         return budgetLinesService.getCurrentMonthBudgetLines(user, LocalDate.now().getMonthValue(), LocalDate.now().getYear());
     }
-
 }
