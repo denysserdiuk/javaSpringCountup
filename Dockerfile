@@ -20,4 +20,4 @@ RUN addgroup --system appgroup && adduser --system appuser --ingroup appgroup
 USER appuser
 
 # Run the application
-ENTRYPOINT ["java", "-jar", "target/financeApp.jar"]
+ENTRYPOINT ["java", "-jar", "financeApp.jar"]
