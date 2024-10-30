@@ -111,3 +111,39 @@ body {
 .register-page__link:hover {
     color: var(--bs-red);
 }
+/* Tablet */
+@media (max-width: 768px) {
+    .register-page__container {
+        width: 90%;
+        padding: 30px;
+    }
+
+    .register-page__input-group {
+        flex-direction: column;
+    }
+
+    .register-page__input {
+        width: 100%;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    body {
+        padding: 20px;
+        height: auto;
+    }
+
+    .register-page__container {
+        padding: 20px;
+        width: 100%;
+    }
+
+    .register-page__heading {
+        font-size: 1.5em;
+    }
+
+    .register-page__button {
+        font-size: 14px;
+    }
+}

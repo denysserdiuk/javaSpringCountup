@@ -116,3 +116,44 @@ body {
 .login-page__link:hover {
   color: var(--bs-red);
 }
+
+/* Tablet */
+@media (max-width: 768px) {
+  .login-page__container {
+    width: 90%;
+    padding: 30px;
+  }
+
+  .login-page__input {
+    font-size: 14px;
+  }
+
+  .login-page__heading {
+    font-size: 1.75em;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  body {
+    padding: 20px;
+    height: auto;
+  }
+
+  .login-page__container {
+    padding: 20px;
+    width: 100%;
+  }
+
+  .login-page__heading {
+    font-size: 1.5em;
+  }
+
+  .login-page__button {
+    font-size: 14px;
+  }
+
+  .login-page__label {
+    font-size: 12px;
+  }
+}
