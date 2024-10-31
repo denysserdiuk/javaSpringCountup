@@ -8,7 +8,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0;
 }
 
@@ -137,11 +137,10 @@ body {
 @media (max-width: 480px) {
   body {
     padding: 20px;
-    height: auto;
+    height: 100%;
   }
 
   .login-page__container {
-    padding: 20px;
     width: 100%;
   }
 

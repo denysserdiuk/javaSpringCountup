@@ -81,19 +81,21 @@
 
 .window-container {
     background-color: var(--bs-light);
-    padding: 25px;
+    padding: 20px;
     border-radius: var(--border-radius);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    position: relative;
-    height: 500px;
     display: flex;
     flex-direction: column;
+    max-height: 500px;
+    overflow: hidden;
 }
 
 .scrollable-list {
     flex-grow: 1;
     overflow-y: auto;
+    padding-right: 10px;
     margin-bottom: 15px;
+    max-height: 400px;
 }
 
 #profits-list, #losses-list {
@@ -285,8 +287,8 @@
     }
 
     .window-container {
-        height: 300px;
-        width: auto;
+        height: auto;
+        max-height: 400px;
     }
     .chart-container canvas {
         height: 300px !important;
