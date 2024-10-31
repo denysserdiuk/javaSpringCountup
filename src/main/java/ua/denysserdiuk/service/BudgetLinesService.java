@@ -1,7 +1,7 @@
-package ua.denysserdiuk.service;
+package denysserdiuk.service;
 
-import ua.denysserdiuk.model.Budget;
-import ua.denysserdiuk.model.Users;
+import denysserdiuk.model.Budget;
+import denysserdiuk.model.Users;
 
 import java.util.List;
 import java.util.Map;

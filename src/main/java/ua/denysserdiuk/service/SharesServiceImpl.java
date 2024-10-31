@@ -1,11 +1,11 @@
-package ua.denysserdiuk.service;
+package denysserdiuk.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ua.denysserdiuk.model.Shares;
-import ua.denysserdiuk.model.StockPrice;
-import ua.denysserdiuk.model.Users;
-import ua.denysserdiuk.repository.SharesRepository;
+import denysserdiuk.model.Shares;
+import denysserdiuk.model.StockPrice;
+import denysserdiuk.model.Users;
+import denysserdiuk.repository.SharesRepository;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

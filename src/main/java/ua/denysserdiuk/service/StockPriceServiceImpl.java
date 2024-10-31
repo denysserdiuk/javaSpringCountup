@@ -1,4 +1,4 @@
-package ua.denysserdiuk.service;
+package denysserdiuk.service;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import ua.denysserdiuk.model.StockPrice;
-import ua.denysserdiuk.repository.StockPriceRepository;
+import denysserdiuk.model.StockPrice;
+import denysserdiuk.repository.StockPriceRepository;
 
 import java.time.LocalDateTime;
 

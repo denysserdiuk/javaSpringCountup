@@ -1,4 +1,4 @@
-package ua.denysserdiuk.utils;
+package denysserdiuk.utils;
 
 
 import com.sendgrid.Method;

@@ -1,4 +1,4 @@
-package ua.denysserdiuk.enums;
+package denysserdiuk.enums;
 
 public enum SessionStage {
     NONE,

@@ -1,6 +1,6 @@
-package ua.denysserdiuk.service;
+package denysserdiuk.service;
 
-import ua.denysserdiuk.model.Users;
+import denysserdiuk.model.Users;
 
 public interface UserCreationService {
     public String createUser(Users users);

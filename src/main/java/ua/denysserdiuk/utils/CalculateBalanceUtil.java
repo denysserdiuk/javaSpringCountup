@@ -1,4 +1,4 @@
-package ua.denysserdiuk.utils;
+package denysserdiuk.utils;
 
 public class CalculateBalanceUtil {
     public static double calculateBalanceUtil(Double profit, Double loss){

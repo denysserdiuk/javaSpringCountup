@@ -1,4 +1,4 @@
-package ua.denysserdiuk.controller;
+package denysserdiuk.controller;
 
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +9,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import ua.denysserdiuk.model.Users;
-import ua.denysserdiuk.model.VerificationToken;
-import ua.denysserdiuk.repository.UserRepository;
-import ua.denysserdiuk.service.UserCreationService;
-import ua.denysserdiuk.utils.EmailService;
+import denysserdiuk.model.Users;
+import denysserdiuk.model.VerificationToken;
+import denysserdiuk.repository.UserRepository;
+import denysserdiuk.service.UserCreationService;
+import denysserdiuk.utils.EmailService;
 
 import java.io.IOException;
 import java.time.LocalDateTime;

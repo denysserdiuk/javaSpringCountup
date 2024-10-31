@@ -1,4 +1,4 @@
-package ua.denysserdiuk.controller;
+package denysserdiuk.controller;
 
 
 import jakarta.validation.Valid;
@@ -9,8 +9,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import ua.denysserdiuk.utils.EmailService;
-import ua.denysserdiuk.model.ContactForm;
+import denysserdiuk.utils.EmailService;
+import denysserdiuk.model.ContactForm;
 
 import java.io.IOException;
 

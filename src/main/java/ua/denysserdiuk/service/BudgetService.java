@@ -1,13 +1,13 @@
-package ua.denysserdiuk.service;
+package denysserdiuk.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ua.denysserdiuk.model.Budget;
-import ua.denysserdiuk.model.Shares;
-import ua.denysserdiuk.model.Users;
-import ua.denysserdiuk.repository.BudgetRepository;
-import ua.denysserdiuk.repository.SharesRepository;
-import ua.denysserdiuk.utils.CalculateBalanceUtil;
+import denysserdiuk.model.Budget;
+import denysserdiuk.model.Shares;
+import denysserdiuk.model.Users;
+import denysserdiuk.repository.BudgetRepository;
+import denysserdiuk.repository.SharesRepository;
+import denysserdiuk.utils.CalculateBalanceUtil;
 
 import java.time.LocalDate;
 import java.time.YearMonth;

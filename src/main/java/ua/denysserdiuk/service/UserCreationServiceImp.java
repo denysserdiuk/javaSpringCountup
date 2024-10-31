@@ -1,10 +1,10 @@
-package ua.denysserdiuk.service;
+package denysserdiuk.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import ua.denysserdiuk.model.Users;
-import ua.denysserdiuk.repository.UserRepository;
+import denysserdiuk.model.Users;
+import denysserdiuk.repository.UserRepository;
 
 @Service
 public class UserCreationServiceImp implements UserCreationService {

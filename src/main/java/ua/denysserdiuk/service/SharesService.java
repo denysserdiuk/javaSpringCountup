@@ -1,7 +1,7 @@
-package ua.denysserdiuk.service;
+package denysserdiuk.service;
 
-import ua.denysserdiuk.model.Shares;
-import ua.denysserdiuk.model.StockPrice;
+import denysserdiuk.model.Shares;
+import denysserdiuk.model.StockPrice;
 import java.util.List;
 
 public interface SharesService {

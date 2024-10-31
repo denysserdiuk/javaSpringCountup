@@ -1,14 +1,14 @@
-package ua.denysserdiuk.utils;
+package denysserdiuk.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import ua.denysserdiuk.model.Shares;
-import ua.denysserdiuk.model.StockPrice;
-import ua.denysserdiuk.repository.SharesRepository;
-import ua.denysserdiuk.repository.StockPriceRepository;
-import ua.denysserdiuk.service.SharesServiceImpl;
-import ua.denysserdiuk.service.StockPriceService;
+import denysserdiuk.model.Shares;
+import denysserdiuk.model.StockPrice;
+import denysserdiuk.repository.SharesRepository;
+import denysserdiuk.repository.StockPriceRepository;
+import denysserdiuk.service.SharesServiceImpl;
+import denysserdiuk.service.StockPriceService;
 
 import java.time.LocalDateTime;
 import java.util.List;

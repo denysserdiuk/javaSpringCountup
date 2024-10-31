@@ -1,4 +1,4 @@
-package ua.denysserdiuk.utils;
+package denysserdiuk.utils;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

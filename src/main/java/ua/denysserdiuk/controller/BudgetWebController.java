@@ -1,4 +1,4 @@
-package ua.denysserdiuk.controller;
+package denysserdiuk.controller;
 
 
 import org.springframework.http.HttpStatus;
@@ -6,11 +6,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ua.denysserdiuk.model.Budget;
-import ua.denysserdiuk.model.Users;
-import ua.denysserdiuk.repository.UserRepository;
-import ua.denysserdiuk.service.BudgetLinesService;
-import ua.denysserdiuk.utils.SecurityUtils;
+import denysserdiuk.model.Budget;
+import denysserdiuk.model.Users;
+import denysserdiuk.repository.UserRepository;
+import denysserdiuk.service.BudgetLinesService;
+import denysserdiuk.utils.SecurityUtils;
 
 import java.time.LocalDate;
 import java.util.List;

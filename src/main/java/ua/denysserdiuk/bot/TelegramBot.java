@@ -1,4 +1,4 @@
-package ua.denysserdiuk.bot;
+package denysserdiuk.bot;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,11 +13,11 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import ua.denysserdiuk.model.Budget;
-import ua.denysserdiuk.model.UserSession;
-import ua.denysserdiuk.repository.UserRepository;
-import ua.denysserdiuk.service.BudgetLinesService;
-import ua.denysserdiuk.enums.SessionStage;
+import denysserdiuk.model.Budget;
+import denysserdiuk.model.UserSession;
+import denysserdiuk.repository.UserRepository;
+import denysserdiuk.service.BudgetLinesService;
+import denysserdiuk.enums.SessionStage;
 
 import java.time.LocalDate;
 import java.util.*;

@@ -1,16 +1,16 @@
-package ua.denysserdiuk.controller;
+package denysserdiuk.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ua.denysserdiuk.model.Budget;
-import ua.denysserdiuk.model.Shares;
-import ua.denysserdiuk.model.Users;
-import ua.denysserdiuk.repository.BudgetRepository;
-import ua.denysserdiuk.repository.SharesRepository;
-import ua.denysserdiuk.repository.UserRepository;
-import ua.denysserdiuk.service.BudgetLinesService;
-import ua.denysserdiuk.service.SharesService;
+import denysserdiuk.model.Budget;
+import denysserdiuk.model.Shares;
+import denysserdiuk.model.Users;
+import denysserdiuk.repository.BudgetRepository;
+import denysserdiuk.repository.SharesRepository;
+import denysserdiuk.repository.UserRepository;
+import denysserdiuk.service.BudgetLinesService;
+import denysserdiuk.service.SharesService;
 
 import java.util.List;
 import java.util.Optional;

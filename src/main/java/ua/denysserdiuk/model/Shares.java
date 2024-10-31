@@ -1,7 +1,7 @@
-package ua.denysserdiuk.model;
+package denysserdiuk.model;
 
 import jakarta.persistence.*;
-
+import denysserdiuk.model.Users;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 

@@ -1,4 +1,4 @@
-package ua.denysserdiuk.model;
+package denysserdiuk.model;
 
 import jakarta.persistence.*;
 

@@ -1,6 +1,6 @@
-package ua.denysserdiuk.model;
+package denysserdiuk.model;
 
-import ua.denysserdiuk.enums.SessionStage;
+import denysserdiuk.enums.SessionStage;
 
 public class UserSession {
     private boolean authenticated = false;
