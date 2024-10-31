@@ -25,7 +25,8 @@ public class Shares {
 
     public Shares(){}
 
-    public Shares(Users user, String ticker,
+    public Shares(Users user,
+                  String ticker,
                   double amount,
                   LocalDate purchaseDate,
                   double price,
