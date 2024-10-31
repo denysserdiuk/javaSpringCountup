@@ -9,7 +9,7 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 @Configuration
 public class TelegramBotConfig {
-
+    //test
     @Autowired
     private TelegramBot telegramBot;
 
