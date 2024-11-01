@@ -58,7 +58,7 @@ body {
     margin-bottom: 15px;
 }
 
-.register-page__input--email, .register-page__input--first-name,
+.register-page__input--email,
 .register-page__input--username{
     width: 100%;
 }
