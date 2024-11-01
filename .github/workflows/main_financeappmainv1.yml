@@ -28,19 +28,19 @@ jobs:
       # Build Docker Image
       - name: Build Docker Image
         run: |
-          docker build -t ghcr.io/${{ github.repository_owner }}/financeapp:latest .
+          docker build -t ghcr.io/${{ github.actor }}/financeapp-ghcr:latest .
 
       # Push Docker Image to GHCR
       - name: Push Docker Image to GHCR
         run: |
-          docker push ghcr.io/${{ github.repository_owner }}/financeapp:latest
+          docker push ghcr.io/${{ github.actor }}/financeapp-ghcr:latest
 
       # Deploy to Azure App Service
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
-          app-name: ${{ secrets.AZURE_APP_NAME }}
-          images: ghcr.io/${{ github.repository_owner }}/financeapp:latest
+          app-name: ${{secrets.AZURE_APP_NAME}}
+          images: ghcr.io/${{ github.actor }}/financeapp-ghcr:latest
           scm-do-build-during-deployment: false
           slot-name: 'production'  # Use 'production' or your slot name
           docker-registry-server-url: 'https://ghcr.io'
