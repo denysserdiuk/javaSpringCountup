@@ -45,4 +45,4 @@ jobs:
           slot-name: 'production'  # Use 'production' or your slot name
           docker-registry-server-url: 'https://ghcr.io'
           docker-registry-server-user: ${{ github.actor }}
-          docker-registry-server-password: ${{ secrets.GITHUB_TOKEN }}
+          docker-registry-server-password: ${{ secrets.GHCR_PAT }}
